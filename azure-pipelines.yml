@@ -1,13 +1,8 @@
-# ASP.NET
-# Build and test ASP.NET projects.
-# Add steps that publish symbols, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/apps/aspnet/build-aspnet-4
-
 trigger:
-- main
+- master
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'ubuntu-latest'
 
 variables:
   solution: '**/*.sln'
@@ -15,20 +10,34 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- task: NuGetToolInstaller@1
-
-- task: NuGetCommand@2
+- task: UseDotNet@2
   inputs:
-    restoreSolution: '$(solution)'
+    packageType: 'sdk'
+    version: '5.x'
 
-- task: VSBuild@1
+- task: DotNetCoreCLI@2
+  displayName: 'restore'
   inputs:
-    solution: '$(solution)'
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    command: 'restore'
+    feedsToUse: 'select'
 
-- task: VSTest@2
+- task: DotNetCoreCLI@2
+  displayName: 'build'
   inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    command: 'build'
+    
+- task: CmdLine@2
+  displayName: 'publish'
+  inputs:
+   script: |
+    dotnet publish
+
+- task: Docker@2
+  displayName: 'build and push docker'
+  inputs:
+    containerRegistry: $(DockerRegistry)
+    repository: $(repository)
+    command: 'buildAndPush'
+    Dockerfile: 'src/EasyAbp.AbpModuleHub.Web/Dockerfile'
+    buildContext: .
+    tags: 'latest'
