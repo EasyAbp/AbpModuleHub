@@ -260,3 +260,7 @@ src/EasyAbp.AbpModuleHub.HttpApi.HostWithIds/Logs/*
 src/EasyAbp.AbpModuleHub.DbMigrator/Logs/*
 src/EasyAbp.AbpModuleHub.Blazor.Server/Logs/*
 src/EasyAbp.AbpModuleHub.Blazor.Server.Tiered/Logs/*
+/src/EasyAbp.AbpModuleHub.Web/appsettings.secrets.json
+/src/EasyAbp.AbpModuleHub.DbMigrator/appsettings.secrets.json
+/src/EasyAbp.AbpModuleHub.DbMigrator/tempkey.jwk
+/src/EasyAbp.AbpModuleHub.Web/tempkey.jwk
