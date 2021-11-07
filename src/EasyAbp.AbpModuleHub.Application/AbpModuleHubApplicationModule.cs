@@ -17,8 +17,9 @@ namespace EasyAbp.AbpModuleHub
         typeof(AbpPermissionManagementApplicationModule),
         typeof(AbpTenantManagementApplicationModule),
         typeof(AbpFeatureManagementApplicationModule),
-        typeof(AbpSettingManagementApplicationModule)
-        )]
+        typeof(AbpSettingManagementApplicationModule),
+        typeof(AbpAutoMapperModule)
+    )]
     public class AbpModuleHubApplicationModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)

@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using EasyAbp.AbpModuleHub.MultiTenancy;
+using EasyAbp.EShop.Products;
+using EasyAbp.EShop.Stores;
 using Volo.Abp.AuditLogging;
 using Volo.Abp.BackgroundJobs;
 using Volo.Abp.Emailing;
@@ -27,16 +29,15 @@ namespace EasyAbp.AbpModuleHub
         typeof(AbpPermissionManagementDomainIdentityServerModule),
         typeof(AbpSettingManagementDomainModule),
         typeof(AbpTenantManagementDomainModule),
-        typeof(AbpEmailingModule)
+        typeof(AbpEmailingModule),
+        typeof(EShopProductsDomainModule),
+        typeof(EShopStoresDomainModule)
     )]
     public class AbpModuleHubDomainModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
-            Configure<AbpMultiTenancyOptions>(options =>
-            {
-                options.IsEnabled = MultiTenancyConsts.IsEnabled;
-            });
+            Configure<AbpMultiTenancyOptions>(options => { options.IsEnabled = MultiTenancyConsts.IsEnabled; });
 
 #if DEBUG
             context.Services.Replace(ServiceDescriptor.Singleton<IEmailSender, NullEmailSender>());

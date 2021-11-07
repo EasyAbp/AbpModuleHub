@@ -1,9 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EasyAbp.AbpModuleHub.Modules;
+using EasyAbp.EShop.Products.EntityFrameworkCore;
+using EasyAbp.EShop.Stores.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.EntityFrameworkCore;
+using Volo.Abp.EntityFrameworkCore.Modeling;
 using Volo.Abp.FeatureManagement.EntityFrameworkCore;
 using Volo.Abp.Identity;
 using Volo.Abp.Identity.EntityFrameworkCore;
@@ -18,15 +22,15 @@ namespace EasyAbp.AbpModuleHub.EntityFrameworkCore
     [ReplaceDbContext(typeof(IIdentityDbContext))]
     [ReplaceDbContext(typeof(ITenantManagementDbContext))]
     [ConnectionStringName("Default")]
-    public class AbpModuleHubDbContext : 
+    public class AbpModuleHubDbContext :
         AbpDbContext<AbpModuleHubDbContext>,
         IIdentityDbContext,
         ITenantManagementDbContext
     {
         /* Add DbSet properties for your Aggregate Roots / Entities here. */
-        
+
         #region Entities from the modules
-        
+
         /* Notice: We only implemented IIdentityDbContext and ITenantManagementDbContext
          * and replaced them for this DbContext. This allows you to perform JOIN
          * queries for the entities of these modules over the repositories easily. You
@@ -37,7 +41,7 @@ namespace EasyAbp.AbpModuleHub.EntityFrameworkCore
          * More info: Replacing a DbContext of a module ensures that the related module
          * uses this DbContext on runtime. Otherwise, it will use its own DbContext class.
          */
-        
+
         //Identity
         public DbSet<IdentityUser> Users { get; set; }
         public DbSet<IdentityRole> Roles { get; set; }
@@ -45,17 +49,19 @@ namespace EasyAbp.AbpModuleHub.EntityFrameworkCore
         public DbSet<OrganizationUnit> OrganizationUnits { get; set; }
         public DbSet<IdentitySecurityLog> SecurityLogs { get; set; }
         public DbSet<IdentityLinkUser> LinkUsers { get; set; }
-        
+
         // Tenant Management
         public DbSet<Tenant> Tenants { get; set; }
         public DbSet<TenantConnectionString> TenantConnectionStrings { get; set; }
 
+        // Hub Entities
+        public DbSet<ModuleProduct> ModuleProducts { get; set; }
+
         #endregion
-        
+
         public AbpModuleHubDbContext(DbContextOptions<AbpModuleHubDbContext> options)
             : base(options)
         {
-
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -72,8 +78,22 @@ namespace EasyAbp.AbpModuleHub.EntityFrameworkCore
             builder.ConfigureIdentityServer();
             builder.ConfigureFeatureManagement();
             builder.ConfigureTenantManagement();
+            builder.ConfigureEShopProducts(o => o.TablePrefix = "EasyAbp.EShop.");
+            builder.ConfigureEShopStores(o => o.TablePrefix = "EasyAbp.EShop.");
 
             /* Configure your own tables/entities inside here */
+
+            builder.Entity<ModuleProduct>(b =>
+            {
+                b.ToTable(AbpModuleHubConsts.DbTablePrefix + "Modules", AbpModuleHubConsts.DbSchema);
+                b.ConfigureByConvention();
+
+                b.Property(e => e.Name).HasMaxLength(512).IsRequired();
+                b.Property(e => e.Description).HasMaxLength(2048).IsRequired();
+                b.Property(e => e.CoverUrl).HasMaxLength(256);
+                b.Property(e => e.PayMethod).HasMaxLength(64).IsRequired();
+                b.Property(e => e.ProductId).IsRequired();
+            });
 
             //builder.Entity<YourEntity>(b =>
             //{

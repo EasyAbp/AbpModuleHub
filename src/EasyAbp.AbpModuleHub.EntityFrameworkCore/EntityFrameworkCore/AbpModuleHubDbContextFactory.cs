@@ -16,7 +16,7 @@ namespace EasyAbp.AbpModuleHub.EntityFrameworkCore
             var configuration = BuildConfiguration();
 
             var builder = new DbContextOptionsBuilder<AbpModuleHubDbContext>()
-                .UseSqlServer(configuration.GetConnectionString("Default"));
+                .UseNpgsql(configuration.GetConnectionString("Default"));
 
             return new AbpModuleHubDbContext(builder.Options);
         }
