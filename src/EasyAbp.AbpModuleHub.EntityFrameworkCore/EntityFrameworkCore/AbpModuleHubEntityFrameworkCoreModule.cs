@@ -58,8 +58,8 @@ namespace EasyAbp.AbpModuleHub.EntityFrameworkCore
 
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
         {
-            StoresDbProperties.DbTablePrefix = "EasyAbp.EShop.";
-            ProductsDbProperties.DbTablePrefix = "EasyAbp.EShop.";
+            StoresDbProperties.DbTablePrefix = "EasyAbp.EShop.Stores.";
+            ProductsDbProperties.DbTablePrefix = "EasyAbp.EShop.Products.";
         }
     }
 }

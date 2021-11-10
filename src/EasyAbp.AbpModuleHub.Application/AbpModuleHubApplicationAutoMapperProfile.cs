@@ -2,7 +2,6 @@
 using EasyAbp.AbpModuleHub.ModuleManagement.Dtos;
 using EasyAbp.AbpModuleHub.Modules;
 using EasyAbp.AbpModuleHub.SearchModule.Dtos;
-using EasyAbp.EShop.Products.Products;
 
 namespace EasyAbp.AbpModuleHub
 {
