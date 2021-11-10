@@ -1,4 +1,5 @@
 ﻿using System;
+using EasyAbp.EShop.Products.Products;
 using Volo.Abp.Domain.Entities.Auditing;
 using Volo.Abp.MultiTenancy;
 
@@ -17,6 +18,8 @@ namespace EasyAbp.AbpModuleHub.Modules
         public virtual string PayMethod { get; protected set; }
 
         public virtual Guid ProductId { get; protected set; }
+
+        public virtual Product Product { get; protected set; }
 
         protected ModuleProduct()
         {

@@ -14,8 +14,8 @@ namespace EasyAbp.AbpModuleHub.ModuleManagement
 
         Task DeleteModuleAsync(Guid id);
 
-        Task GetModuleByIdAsync(Guid id);
+        Task<ModuleDto> GetModuleByIdAsync(Guid id);
 
-        Task<PagedResultDto<ModuleDto>> GetListAsync(PagedResultRequestDto input);
+        Task<PagedResultDto<ModuleListDto>> GetListAsync(PagedResultRequestDto input);
     }
 }
