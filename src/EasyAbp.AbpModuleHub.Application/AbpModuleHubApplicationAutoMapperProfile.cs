@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
+using EasyAbp.AbpModuleHub.HomePage.Dtos;
 using EasyAbp.AbpModuleHub.ModuleManagement.Dtos;
 using EasyAbp.AbpModuleHub.Modules;
-using EasyAbp.AbpModuleHub.SearchModule.Dtos;
 
 namespace EasyAbp.AbpModuleHub
 {

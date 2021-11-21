@@ -83,7 +83,6 @@ namespace EasyAbp.AbpModuleHub.Web
             ConfigureVirtualFileSystem(hostingEnvironment);
             ConfigureLocalizationServices();
             ConfigureNavigationServices();
-            ConfigureAutoApiControllers();
             ConfigureSwaggerServices(context.Services);
         }
 

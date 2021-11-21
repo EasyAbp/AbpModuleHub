@@ -1,24 +1,15 @@
-using System;
 using System.Threading.Tasks;
 using Bogus;
 using EasyAbp.AbpModuleHub.ModuleManagement;
 using EasyAbp.AbpModuleHub.ModuleManagement.Dtos;
-using EasyAbp.AbpModuleHub.SearchModule;
-using EasyAbp.AbpModuleHub.SearchModule.Dtos;
-using Shouldly;
-using Volo.Abp.MultiTenancy;
-using Volo.Abp.Users;
 using Xunit;
 
 namespace EasyAbp.AbpModuleHub.Debugger
 {
     public class DemoDebugger : DebuggerBase
     {
-        private readonly ISearchModuleAppService _searchModuleAppService;
-
         public DemoDebugger()
         {
-            _searchModuleAppService = GetRequiredService<ISearchModuleAppService>();
         }
 
         [Fact]

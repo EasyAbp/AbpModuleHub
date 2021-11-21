@@ -1,7 +1,7 @@
 ﻿using System;
 using Volo.Abp.Application.Dtos;
 
-namespace EasyAbp.AbpModuleHub.SearchModule.Dtos
+namespace EasyAbp.AbpModuleHub.HomePage.Dtos
 {
     public class SearchModuleResultDto : EntityDto<Guid>
     {

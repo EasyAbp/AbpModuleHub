@@ -1,18 +1,18 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using EasyAbp.AbpModuleHub.HomePage.Dtos;
 using EasyAbp.AbpModuleHub.Modules;
-using EasyAbp.AbpModuleHub.SearchModule.Dtos;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
+using System.Linq;
 
-namespace EasyAbp.AbpModuleHub.SearchModule
+namespace EasyAbp.AbpModuleHub.HomePage
 {
-    public class SearchModuleAppService : ApplicationService, ISearchModuleAppService
+    public class HomePageAppService : ApplicationService, IHomePageAppService
     {
         private readonly IModuleRepository _moduleRepository;
 
-        public SearchModuleAppService(IModuleRepository moduleRepository)
+        public HomePageAppService(IModuleRepository moduleRepository)
         {
             _moduleRepository = moduleRepository;
         }
