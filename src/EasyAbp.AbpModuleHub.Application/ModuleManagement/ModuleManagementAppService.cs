@@ -47,7 +47,7 @@ namespace EasyAbp.AbpModuleHub.ModuleManagement
         public async Task<PagedResultDto<ModuleListDto>> GetListAsync(PagedResultRequestDto input)
         {
             var totalCount = await _moduleRepository.GetCountAsync();
-            var modules = await _moduleRepository.GetPagedListAsync(input.SkipCount, input.MaxResultCount, null);
+            var modules = await _moduleRepository.GetPagedListAsync(input.SkipCount, input.MaxResultCount, "CreationTime desc");
 
             return new PagedResultDto<ModuleListDto>(totalCount,
                 ObjectMapper.Map<List<ModuleProduct>, List<ModuleListDto>>(modules));

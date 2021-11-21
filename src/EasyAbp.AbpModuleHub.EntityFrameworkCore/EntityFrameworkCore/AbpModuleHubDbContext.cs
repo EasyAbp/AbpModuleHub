@@ -56,6 +56,7 @@ namespace EasyAbp.AbpModuleHub.EntityFrameworkCore
 
         // Hub Entities
         public DbSet<ModuleProduct> ModuleProducts { get; set; }
+        public DbSet<ModuleType> ModuleTypes { get; set; }
 
         #endregion
 
@@ -95,12 +96,14 @@ namespace EasyAbp.AbpModuleHub.EntityFrameworkCore
                 b.Property(e => e.ProductId).IsRequired();
             });
 
-            //builder.Entity<YourEntity>(b =>
-            //{
-            //    b.ToTable(AbpModuleHubConsts.DbTablePrefix + "YourEntities", AbpModuleHubConsts.DbSchema);
-            //    b.ConfigureByConvention(); //auto configure for the base class props
-            //    //...
-            //});
+            builder.Entity<ModuleType>(b =>
+            {
+                b.ToTable(AbpModuleHubConsts.DbTablePrefix + "ModuleTypes", AbpModuleHubConsts.DbSchema);
+                b.ConfigureByConvention();
+
+                b.Property(e => e.Name).HasMaxLength(64).IsRequired();
+                b.Property(e => e.Description).HasMaxLength(1024);
+            });
         }
     }
 }

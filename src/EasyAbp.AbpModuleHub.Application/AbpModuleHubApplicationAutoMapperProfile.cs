@@ -15,6 +15,9 @@ namespace EasyAbp.AbpModuleHub
 
             CreateMap<ModuleProduct, SearchModuleResultDto>();
             CreateMap<ModuleProduct, ModuleListDto>();
+
+            CreateMap<ModuleType, ModuleTypeDto>();
+            CreateMap<ModuleTypeDto, ModuleType>();
         }
     }
 }
