@@ -21,11 +21,12 @@ namespace EasyAbp.AbpModuleHub.HomePage
         {
             var queryable = await _moduleRepository.GetQueryableAsync();
 
-            var modules = queryable.WhereIf(!string.IsNullOrEmpty(input.SearchKey), module => module.Name.Contains(input.SearchKey))
+            var modules = queryable
+                .Where(m => m.Name.Contains(input.SearchKey))
                 .OrderByDescending(module => module.LastModificationTime);
 
-            var totalCount = modules.LongCount();
-            var modulesList = modules.PageBy(input).ToList();
+            var totalCount = await AsyncExecuter.LongCountAsync(modules);
+            var modulesList = await AsyncExecuter.ToListAsync(modules);
 
             return new PagedResultDto<SearchModuleResultDto>(totalCount,
                 ObjectMapper.Map<List<ModuleProduct>, List<SearchModuleResultDto>>(modulesList));
