@@ -1,3 +1,5 @@
+using System;
+
 namespace EasyAbp.AbpModuleHub.ModuleManagement.Dtos
 {
     public abstract class CreateOrUpdateModuleDto
@@ -11,5 +13,7 @@ namespace EasyAbp.AbpModuleHub.ModuleManagement.Dtos
         public string PayMethod { get; set; }
 
         public double Price { get; set; }
+
+        public Guid? ModuleTypeId { get; set; }
     }
 }

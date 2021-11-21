@@ -26,7 +26,10 @@ namespace EasyAbp.AbpModuleHub.ModuleManagement
                 CurrentTenant.Id,
                 input.Name,
                 input.Description,
-                input.PayMethod));
+                input.PayMethod)
+            {
+                ModuleTypeId = input.ModuleTypeId
+            });
         }
 
         public Task UpdateModuleAsync(UpdateModuleDto input)

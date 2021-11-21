@@ -21,6 +21,8 @@ namespace EasyAbp.AbpModuleHub.Modules
 
         public virtual Product Product { get; protected set; }
 
+        public virtual Guid? ModuleTypeId { get; set; }
+
         protected ModuleProduct()
         {
         }
