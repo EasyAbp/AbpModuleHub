@@ -111,7 +111,7 @@ namespace EasyAbp.AbpModuleHub.IdentityServer
 
         private async Task<ApiScope> CreateApiScopeAsync(string name)
         {
-            var apiScope = await _apiScopeRepository.GetByNameAsync(name);
+            var apiScope = await _apiScopeRepository.FindByNameAsync(name);
             if (apiScope == null)
             {
                 apiScope = await _apiScopeRepository.InsertAsync(
@@ -160,9 +160,8 @@ namespace EasyAbp.AbpModuleHub.IdentityServer
                     corsOrigins: new[] { webClientRootUrl.RemovePostFix("/") }
                 );
             }
-            
-            
-            
+
+
             // Swagger Client
             var swaggerClientId = configurationSection["AbpModuleHub_Swagger:ClientId"];
             if (!swaggerClientId.IsNullOrWhiteSpace())
