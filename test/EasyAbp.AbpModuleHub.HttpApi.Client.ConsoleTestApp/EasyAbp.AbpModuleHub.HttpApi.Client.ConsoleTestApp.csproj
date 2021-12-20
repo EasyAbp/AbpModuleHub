@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.Http.Client.IdentityModel" Version="5.0.0" />
+    <PackageReference Include="Volo.Abp.Http.Client.IdentityModel" Version="$(AbpVersion)" />
     <ProjectReference Include="..\..\src\EasyAbp.AbpModuleHub.HttpApi.Client\EasyAbp.AbpModuleHub.HttpApi.Client.csproj" />
   </ItemGroup>
 

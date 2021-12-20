@@ -23,12 +23,12 @@
   <ItemGroup>
     <PackageReference Include="Serilog.Extensions.Logging" Version="3.1.0" />
     <PackageReference Include="Serilog.Sinks.Async" Version="1.5.0" />
-    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="$(AbpVersion)" />
     <PackageReference Include="Serilog.Sinks.Console" Version="4.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.Autofac" Version="5.0.0" />
+    <PackageReference Include="Volo.Abp.Autofac" Version="$(AbpVersion)" />
     <ProjectReference Include="..\EasyAbp.AbpModuleHub.Application.Contracts\EasyAbp.AbpModuleHub.Application.Contracts.csproj" />
     <ProjectReference Include="..\EasyAbp.AbpModuleHub.EntityFrameworkCore\EasyAbp.AbpModuleHub.EntityFrameworkCore.csproj" />
   </ItemGroup>
