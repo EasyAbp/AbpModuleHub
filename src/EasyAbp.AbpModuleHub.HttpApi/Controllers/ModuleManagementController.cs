@@ -15,7 +15,7 @@ namespace EasyAbp.AbpModuleHub.Controllers
             _moduleManagementAppService = moduleManagementAppService;
         }
 
-        public Task CreateModuleAsync(CreateModuleDto input) => _moduleManagementAppService.CreateModuleAsync(input);
+        public Task<ModuleDto> CreateModuleAsync(CreateModuleDto input) => _moduleManagementAppService.CreateModuleAsync(input);
 
         public Task UpdateModuleAsync(UpdateModuleDto input) => _moduleManagementAppService.UpdateModuleAsync(input);
 

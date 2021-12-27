@@ -8,7 +8,7 @@ namespace EasyAbp.AbpModuleHub.ModuleManagement
 {
     public interface IModuleManagementAppService : IApplicationService
     {
-        Task CreateModuleAsync(CreateModuleDto input);
+        Task<ModuleDto> CreateModuleAsync(CreateModuleDto input);
 
         Task UpdateModuleAsync(UpdateModuleDto input);
 

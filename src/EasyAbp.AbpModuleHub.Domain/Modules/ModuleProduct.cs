@@ -45,5 +45,14 @@ namespace EasyAbp.AbpModuleHub.Modules
         {
             ProductId = productId;
         }
+
+        public void UpdateBaseInfo(string newName,
+            string newDescription,
+            string newPayMethod)
+        {
+            Name = newName;
+            Description = newDescription;
+            PayMethod = newPayMethod;
+        }
     }
 }

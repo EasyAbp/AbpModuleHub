@@ -15,6 +15,7 @@ namespace EasyAbp.AbpModuleHub
 
             CreateMap<ModuleProduct, SearchModuleResultDto>()
                 .ForMember(c => c.PublishedTime, o => o.MapFrom(c => c.CreationTime));
+            CreateMap<ModuleProduct, ModuleDto>();
             CreateMap<ModuleProduct, ModuleListDto>();
 
             CreateMap<ModuleType, ModuleTypeDto>();

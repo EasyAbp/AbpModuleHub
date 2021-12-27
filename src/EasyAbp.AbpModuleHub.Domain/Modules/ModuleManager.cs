@@ -1,11 +1,8 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Linq;
 using System.Threading.Tasks;
 using EasyAbp.EShop.Products.Categories;
 using EasyAbp.EShop.Products.ProductDetails;
 using EasyAbp.EShop.Products.Products;
-using EasyAbp.EShop.Stores.StoreOwners;
 using EasyAbp.EShop.Stores.Stores;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Domain.Services;
@@ -109,6 +106,12 @@ namespace EasyAbp.AbpModuleHub.Modules
             }
 
             return category.Id;
+        }
+
+        public async Task DeleteModuleAsync(ModuleProduct module)
+        {
+            await _productManager.DeleteAsync(module.ProductId);
+            await _moduleRepository.DeleteAsync(module.Id);
         }
     }
 }

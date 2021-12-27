@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using EasyAbp.AbpModuleHub.ModuleManagement.Dtos;
 using EasyAbp.AbpModuleHub.Modules;
+using EasyAbp.AbpModuleHub.Permissions;
+using Microsoft.AspNetCore.Authorization;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 
@@ -20,26 +22,39 @@ namespace EasyAbp.AbpModuleHub.ModuleManagement
             _moduleRepository = moduleRepository;
         }
 
-        public async Task CreateModuleAsync(CreateModuleDto input)
+        public async Task<ModuleDto> CreateModuleAsync(CreateModuleDto input)
         {
-            await _moduleManager.CreateModuleAsync(new ModuleProduct(GuidGenerator.Create(),
+            var newModule = await _moduleManager.CreateModuleAsync(new ModuleProduct(GuidGenerator.Create(),
                 CurrentTenant.Id,
                 input.Name,
                 input.Description,
                 input.PayMethod)
             {
-                ModuleTypeId = input.ModuleTypeId
+                ModuleTypeId = input.ModuleTypeId,
+                CoverUrl = input.CoverUrl
             });
+
+            return ObjectMapper.Map<ModuleProduct, ModuleDto>(newModule);
         }
 
-        public Task UpdateModuleAsync(UpdateModuleDto input)
+        [Authorize(AbpModuleHubPermissions.ModuleManagement.Default)]
+        public async Task UpdateModuleAsync(UpdateModuleDto input)
         {
-            throw new NotImplementedException();
+            var module = await _moduleRepository.GetAsync(input.Id);
+            module.UpdateBaseInfo(input.Name, input.Description, input.PayMethod);
+
+            await _moduleRepository.UpdateAsync(module);
         }
 
-        public Task DeleteModuleAsync(Guid id)
+        public async Task DeleteModuleAsync(Guid id)
         {
-            return _moduleRepository.DeleteAsync(id);
+            var module = await _moduleRepository.FindAsync(id);
+            if (module == null)
+            {
+                return;
+            }
+
+            await _moduleManager.DeleteModuleAsync(module);
         }
 
         public async Task<ModuleDto> GetModuleByIdAsync(Guid id)
