@@ -22,6 +22,7 @@ namespace EasyAbp.AbpModuleHub.ModuleManagement
             _moduleRepository = moduleRepository;
         }
 
+        [Authorize(AbpModuleHubPermissions.ModuleManagement.Create)]
         public async Task<ModuleDto> CreateModuleAsync(CreateModuleDto input)
         {
             var newModule = await _moduleManager.CreateModuleAsync(new ModuleProduct(GuidGenerator.Create(),
@@ -37,15 +38,18 @@ namespace EasyAbp.AbpModuleHub.ModuleManagement
             return ObjectMapper.Map<ModuleProduct, ModuleDto>(newModule);
         }
 
-        [Authorize(AbpModuleHubPermissions.ModuleManagement.Default)]
+        [Authorize(AbpModuleHubPermissions.ModuleManagement.Update)]
         public async Task UpdateModuleAsync(UpdateModuleDto input)
         {
             var module = await _moduleRepository.GetAsync(input.Id);
             module.UpdateBaseInfo(input.Name, input.Description, input.PayMethod);
+            module.ModuleTypeId = input.ModuleTypeId;
+            module.CoverUrl = input.CoverUrl;
 
             await _moduleRepository.UpdateAsync(module);
         }
 
+        [Authorize(AbpModuleHubPermissions.ModuleManagement.Delete)]
         public async Task DeleteModuleAsync(Guid id)
         {
             var module = await _moduleRepository.FindAsync(id);

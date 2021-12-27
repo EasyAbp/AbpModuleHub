@@ -73,5 +73,27 @@ namespace EasyAbp.AbpModuleHub
                 });
             });
         }
+
+        [Fact]
+        public async Task Should_Return_Module_Info()
+        {
+            var module = await _moduleManagementAppService.CreateModuleAsync(new CreateModuleDto
+            {
+                Name = "Details Module",
+                Description = "A Details Module.",
+                CoverUrl = "https://www.picture.com/cover.png",
+                ModuleTypeId = Guid.NewGuid(),
+                PayMethod = "99",
+                Price = 50
+            });
+
+            var moduleDto = await _moduleManagementAppService.GetModuleByIdAsync(module.Id);
+            module.ShouldNotBeNull();
+            moduleDto.Id.ShouldBe(module.Id);
+            moduleDto.Name.ShouldBe(module.Name);
+            moduleDto.Description.ShouldBe(module.Description);
+            moduleDto.CoverUrl.ShouldBe(module.CoverUrl);
+            moduleDto.ModuleTypeId.ShouldBe(module.ModuleTypeId);
+        }
     }
 }
