@@ -11,7 +11,7 @@
     <ProjectReference Include="..\EasyAbp.AbpModuleHub.Domain\EasyAbp.AbpModuleHub.Domain.csproj" />
     <PackageReference Include="EasyAbp.EShop.Products.EntityFrameworkCore" Version="$(EasyShop)" />
     <PackageReference Include="EasyAbp.EShop.Stores.EntityFrameworkCore" Version="$(EasyShop)" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.1">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.13">
       <PrivateAssets>compile; build; native; contentfiles; analyzers; buildtransitive</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
