@@ -13,7 +13,8 @@ namespace EasyAbp.AbpModuleHub
              * Alternatively, you can split your mapping configurations
              * into multiple profile classes for a better organization. */
 
-            CreateMap<ModuleProduct, SearchModuleResultDto>();
+            CreateMap<ModuleProduct, SearchModuleResultDto>()
+                .ForMember(c => c.PublishedTime, o => o.MapFrom(c => c.CreationTime));
             CreateMap<ModuleProduct, ModuleListDto>();
 
             CreateMap<ModuleType, ModuleTypeDto>();

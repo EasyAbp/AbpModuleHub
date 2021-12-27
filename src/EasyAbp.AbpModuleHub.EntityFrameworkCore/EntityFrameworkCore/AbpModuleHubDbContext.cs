@@ -79,8 +79,8 @@ namespace EasyAbp.AbpModuleHub.EntityFrameworkCore
             builder.ConfigureIdentityServer();
             builder.ConfigureFeatureManagement();
             builder.ConfigureTenantManagement();
-            builder.ConfigureEShopProducts(o => o.TablePrefix = "EasyAbp.EShop.");
-            builder.ConfigureEShopStores(o => o.TablePrefix = "EasyAbp.EShop.");
+            builder.ConfigureEShopProducts();
+            builder.ConfigureEShopStores();
 
             /* Configure your own tables/entities inside here */
 
