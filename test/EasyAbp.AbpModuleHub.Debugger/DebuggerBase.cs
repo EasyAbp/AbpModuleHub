@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp;
+using Volo.Abp.Testing;
 using Volo.Abp.Uow;
 
 namespace EasyAbp.AbpModuleHub.Debugger
