@@ -252,15 +252,12 @@ paket-files/
 *.sln.iml
 
 # AbpModuleHub
+src/EasyAbp.AbpModuleHub.Blazor/Logs/*
+src/EasyAbp.AbpModuleHub.Blazor/tempkey.jwk
+src/EasyAbp.AbpModuleHub.Blazor/appsettings.secrets.json
 src/EasyAbp.AbpModuleHub.Web/Logs/*
-src/EasyAbp.AbpModuleHub.Web.Host/Logs/*
-src/EasyAbp.AbpModuleHub.IdentityServer/Logs/*
-src/EasyAbp.AbpModuleHub.HttpApi.Host/Logs/*
-src/EasyAbp.AbpModuleHub.HttpApi.HostWithIds/Logs/*
+src/EasyAbp.AbpModuleHub.Web/tempkey.jwk
+src/EasyAbp.AbpModuleHub.Web/appsettings.secrets.json
 src/EasyAbp.AbpModuleHub.DbMigrator/Logs/*
-src/EasyAbp.AbpModuleHub.Blazor.Server/Logs/*
-src/EasyAbp.AbpModuleHub.Blazor.Server.Tiered/Logs/*
-/src/EasyAbp.AbpModuleHub.Web/appsettings.secrets.json
-/src/EasyAbp.AbpModuleHub.DbMigrator/appsettings.secrets.json
-/src/EasyAbp.AbpModuleHub.DbMigrator/tempkey.jwk
-/src/EasyAbp.AbpModuleHub.Web/tempkey.jwk
+src/EasyAbp.AbpModuleHub.DbMigrator/tempkey.jwk
+src/EasyAbp.AbpModuleHub.DbMigrator/appsettings.secrets.json

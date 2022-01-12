@@ -8,20 +8,23 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Volo.Abp.EntityFrameworkCore;
 
+#nullable disable
+
 namespace EasyAbp.AbpModuleHub.Migrations
 {
     [DbContext(typeof(AbpModuleHubDbContext))]
-    [Migration("20211227021819_Migrations_20211227_01")]
-    partial class Migrations_20211227_01
+    [Migration("20220112203848_Initial501")]
+    partial class Initial501
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("_Abp_DatabaseProvider", EfCoreDatabaseProvider.PostgreSql)
-                .HasAnnotation("Relational:MaxIdentifierLength", 63)
-                .HasAnnotation("ProductVersion", "5.0.13")
-                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                .HasAnnotation("ProductVersion", "6.0.1")
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
             modelBuilder.Entity("EasyAbp.AbpModuleHub.Modules.ModuleProduct", b =>
                 {
@@ -39,7 +42,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnType("character varying(256)");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("CreationTime");
 
                     b.Property<Guid?>("CreatorId")
@@ -51,7 +54,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("DeleterId");
 
                     b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("DeletionTime");
 
                     b.Property<string>("Description")
@@ -70,7 +73,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("IsDeleted");
 
                     b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("LastModificationTime");
 
                     b.Property<Guid?>("LastModifierId")
@@ -101,7 +104,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("AppModules");
+                    b.ToTable("AppModules", (string)null);
                 });
 
             modelBuilder.Entity("EasyAbp.AbpModuleHub.Modules.ModuleType", b =>
@@ -134,7 +137,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AppModuleTypes");
+                    b.ToTable("AppModuleTypes", (string)null);
                 });
 
             modelBuilder.Entity("EasyAbp.EShop.Products.Categories.Category", b =>
@@ -153,7 +156,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("ConcurrencyStamp");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("CreationTime");
 
                     b.Property<Guid?>("CreatorId")
@@ -165,7 +168,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("DeleterId");
 
                     b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("DeletionTime");
 
                     b.Property<string>("Description")
@@ -188,7 +191,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("LastModificationTime");
 
                     b.Property<Guid?>("LastModifierId")
@@ -215,7 +218,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasIndex("ParentId");
 
-                    b.ToTable("EasyAbp.EShop.Categories");
+                    b.ToTable("EasyAbpEShopProductsCategories", (string)null);
                 });
 
             modelBuilder.Entity("EasyAbp.EShop.Products.ProductCategories.ProductCategory", b =>
@@ -234,7 +237,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("ConcurrencyStamp");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("CreationTime");
 
                     b.Property<Guid?>("CreatorId")
@@ -249,7 +252,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("ExtraProperties");
 
                     b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("LastModificationTime");
 
                     b.Property<Guid?>("LastModifierId")
@@ -265,7 +268,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EasyAbp.EShop.ProductCategories");
+                    b.ToTable("EasyAbpEShopProductsProductCategories", (string)null);
                 });
 
             modelBuilder.Entity("EasyAbp.EShop.Products.ProductDetailHistories.ProductDetailHistory", b =>
@@ -285,7 +288,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("ExtraProperties");
 
                     b.Property<DateTime>("ModificationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid>("ProductDetailId")
                         .HasColumnType("uuid");
@@ -303,7 +306,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasIndex("ProductDetailId");
 
-                    b.ToTable("EasyAbp.EShop.ProductDetailHistories");
+                    b.ToTable("EasyAbpEShopProductsProductDetailHistories", (string)null);
                 });
 
             modelBuilder.Entity("EasyAbp.EShop.Products.ProductDetails.ProductDetail", b =>
@@ -319,7 +322,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("ConcurrencyStamp");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("CreationTime");
 
                     b.Property<Guid?>("CreatorId")
@@ -331,7 +334,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("DeleterId");
 
                     b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("DeletionTime");
 
                     b.Property<string>("Description")
@@ -348,7 +351,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("IsDeleted");
 
                     b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("LastModificationTime");
 
                     b.Property<Guid?>("LastModifierId")
@@ -364,7 +367,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EasyAbp.EShop.ProductDetails");
+                    b.ToTable("EasyAbpEShopProductsProductDetails", (string)null);
                 });
 
             modelBuilder.Entity("EasyAbp.EShop.Products.ProductHistories.ProductHistory", b =>
@@ -384,7 +387,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("ExtraProperties");
 
                     b.Property<DateTime>("ModificationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid>("ProductId")
                         .HasColumnType("uuid");
@@ -402,7 +405,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("EasyAbp.EShop.ProductHistories");
+                    b.ToTable("EasyAbpEShopProductsProductHistories", (string)null);
                 });
 
             modelBuilder.Entity("EasyAbp.EShop.Products.ProductInventories.ProductInventory", b =>
@@ -418,7 +421,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("ConcurrencyStamp");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("CreationTime");
 
                     b.Property<Guid?>("CreatorId")
@@ -430,7 +433,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("DeleterId");
 
                     b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("DeletionTime");
 
                     b.Property<string>("ExtraProperties")
@@ -447,7 +450,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("IsDeleted");
 
                     b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("LastModificationTime");
 
                     b.Property<Guid?>("LastModifierId")
@@ -471,7 +474,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasIndex("ProductSkuId");
 
-                    b.ToTable("EasyAbp.EShop.ProductInventories");
+                    b.ToTable("EasyAbpEShopProductsProductInventories", (string)null);
                 });
 
             modelBuilder.Entity("EasyAbp.EShop.Products.Products.Product", b =>
@@ -486,7 +489,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("ConcurrencyStamp");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("CreationTime");
 
                     b.Property<Guid?>("CreatorId")
@@ -498,7 +501,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("DeleterId");
 
                     b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("DeletionTime");
 
                     b.Property<string>("DisplayName")
@@ -530,7 +533,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("LastModificationTime");
 
                     b.Property<Guid?>("LastModifierId")
@@ -563,7 +566,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasIndex("UniqueName");
 
-                    b.ToTable("EasyAbp.EShop.Products");
+                    b.ToTable("EasyAbpEShopProductsProducts", (string)null);
                 });
 
             modelBuilder.Entity("EasyAbp.EShop.Products.Products.ProductAttribute", b =>
@@ -572,7 +575,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("CreationTime");
 
                     b.Property<Guid?>("CreatorId")
@@ -584,7 +587,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("DeleterId");
 
                     b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("DeletionTime");
 
                     b.Property<string>("Description")
@@ -607,7 +610,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("IsDeleted");
 
                     b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("LastModificationTime");
 
                     b.Property<Guid?>("LastModifierId")
@@ -621,7 +624,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("EasyAbp.EShop.ProductAttributes");
+                    b.ToTable("EasyAbpEShopProductsProductAttributes", (string)null);
                 });
 
             modelBuilder.Entity("EasyAbp.EShop.Products.Products.ProductAttributeOption", b =>
@@ -630,7 +633,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("CreationTime");
 
                     b.Property<Guid?>("CreatorId")
@@ -642,7 +645,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("DeleterId");
 
                     b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("DeletionTime");
 
                     b.Property<string>("Description")
@@ -665,7 +668,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("IsDeleted");
 
                     b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("LastModificationTime");
 
                     b.Property<Guid?>("LastModifierId")
@@ -679,7 +682,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasIndex("ProductAttributeId");
 
-                    b.ToTable("EasyAbp.EShop.ProductAttributeOptions");
+                    b.ToTable("EasyAbpEShopProductsProductAttributeOptions", (string)null);
                 });
 
             modelBuilder.Entity("EasyAbp.EShop.Products.Products.ProductSku", b =>
@@ -688,7 +691,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("CreationTime");
 
                     b.Property<Guid?>("CreatorId")
@@ -703,7 +706,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("DeleterId");
 
                     b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("DeletionTime");
 
                     b.Property<string>("ExtraProperties")
@@ -717,7 +720,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("IsDeleted");
 
                     b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("LastModificationTime");
 
                     b.Property<Guid?>("LastModifierId")
@@ -737,13 +740,13 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnType("integer");
 
                     b.Property<decimal?>("OriginalPrice")
-                        .HasColumnType("decimal(20,8)");
+                        .HasColumnType("numeric(20,8)");
 
                     b.Property<TimeSpan?>("PaymentExpireIn")
                         .HasColumnType("interval");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(20,8)");
+                        .HasColumnType("numeric(20,8)");
 
                     b.Property<Guid?>("ProductDetailId")
                         .HasColumnType("uuid");
@@ -758,7 +761,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("EasyAbp.EShop.ProductSkus");
+                    b.ToTable("EasyAbpEShopProductsProductSkus", (string)null);
                 });
 
             modelBuilder.Entity("EasyAbp.EShop.Products.Products.ProductView", b =>
@@ -774,7 +777,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("ConcurrencyStamp");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("CreationTime");
 
                     b.Property<Guid?>("CreatorId")
@@ -804,13 +807,13 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<decimal?>("MaximumPrice")
-                        .HasColumnType("decimal(20,8)");
+                        .HasColumnType("numeric(20,8)");
 
                     b.Property<string>("MediaResources")
                         .HasColumnType("text");
 
                     b.Property<decimal?>("MinimumPrice")
-                        .HasColumnType("decimal(20,8)");
+                        .HasColumnType("numeric(20,8)");
 
                     b.Property<Guid>("ProductDetailId")
                         .HasColumnType("uuid");
@@ -838,7 +841,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasIndex("UniqueName");
 
-                    b.ToTable("EasyAbp.EShop.ProductViews");
+                    b.ToTable("EasyAbpEShopProductsProductViews", (string)null);
                 });
 
             modelBuilder.Entity("EasyAbp.EShop.Stores.StoreOwners.StoreOwner", b =>
@@ -854,7 +857,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("ConcurrencyStamp");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("CreationTime");
 
                     b.Property<Guid?>("CreatorId")
@@ -866,7 +869,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("ExtraProperties");
 
                     b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("LastModificationTime");
 
                     b.Property<Guid?>("LastModifierId")
@@ -888,7 +891,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                     b.HasIndex("OwnerUserId", "StoreId")
                         .IsUnique();
 
-                    b.ToTable("EasyAbp.EShop.StoreOwners");
+                    b.ToTable("EasyAbpEShopStoresStoreOwners", (string)null);
                 });
 
             modelBuilder.Entity("EasyAbp.EShop.Stores.Stores.Store", b =>
@@ -904,7 +907,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("ConcurrencyStamp");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("CreationTime");
 
                     b.Property<Guid?>("CreatorId")
@@ -916,7 +919,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("DeleterId");
 
                     b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("DeletionTime");
 
                     b.Property<string>("ExtraProperties")
@@ -930,7 +933,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("IsDeleted");
 
                     b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("LastModificationTime");
 
                     b.Property<Guid?>("LastModifierId")
@@ -946,7 +949,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EasyAbp.EShop.Stores");
+                    b.ToTable("EasyAbpEShopStoresStores", (string)null);
                 });
 
             modelBuilder.Entity("EasyAbp.EShop.Stores.Transactions.Transaction", b =>
@@ -959,7 +962,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnType("text");
 
                     b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(20,8)");
+                        .HasColumnType("numeric(20,8)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -968,7 +971,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("ConcurrencyStamp");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("CreationTime");
 
                     b.Property<Guid?>("CreatorId")
@@ -997,7 +1000,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("EasyAbp.EShop.Transactions");
+                    b.ToTable("EasyAbpEShopStoresTransactions", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLog", b =>
@@ -1055,7 +1058,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("ExecutionDuration");
 
                     b.Property<DateTime>("ExecutionTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("ExtraProperties")
                         .HasColumnType("text")
@@ -1105,7 +1108,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasIndex("TenantId", "UserId", "ExecutionTime");
 
-                    b.ToTable("AbpAuditLogs");
+                    b.ToTable("AbpAuditLogs", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLogAction", b =>
@@ -1123,7 +1126,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("ExecutionDuration");
 
                     b.Property<DateTime>("ExecutionTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("ExecutionTime");
 
                     b.Property<string>("ExtraProperties")
@@ -1155,7 +1158,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasIndex("TenantId", "ServiceName", "MethodName", "ExecutionTime");
 
-                    b.ToTable("AbpAuditLogActions");
+                    b.ToTable("AbpAuditLogActions", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.EntityChange", b =>
@@ -1169,7 +1172,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("AuditLogId");
 
                     b.Property<DateTime>("ChangeTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("ChangeTime");
 
                     b.Property<byte>("ChangeType")
@@ -1205,7 +1208,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasIndex("TenantId", "EntityTypeFullName", "EntityId");
 
-                    b.ToTable("AbpEntityChanges");
+                    b.ToTable("AbpEntityChanges", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.EntityPropertyChange", b =>
@@ -1247,7 +1250,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasIndex("EntityChangeId");
 
-                    b.ToTable("AbpEntityPropertyChanges");
+                    b.ToTable("AbpEntityPropertyChanges", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.BackgroundJobs.BackgroundJobRecord", b =>
@@ -1263,7 +1266,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("ConcurrencyStamp");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("CreationTime");
 
                     b.Property<string>("ExtraProperties")
@@ -1286,10 +1289,10 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnType("character varying(128)");
 
                     b.Property<DateTime?>("LastTryTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<DateTime>("NextTryTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<byte>("Priority")
                         .ValueGeneratedOnAdd()
@@ -1305,7 +1308,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasIndex("IsAbandoned", "NextTryTime");
 
-                    b.ToTable("AbpBackgroundJobs");
+                    b.ToTable("AbpBackgroundJobs", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.FeatureManagement.FeatureValue", b =>
@@ -1334,9 +1337,10 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Name", "ProviderName", "ProviderKey");
+                    b.HasIndex("Name", "ProviderName", "ProviderKey")
+                        .IsUnique();
 
-                    b.ToTable("AbpFeatureValues");
+                    b.ToTable("AbpFeatureValues", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.Identity.IdentityClaimType", b =>
@@ -1382,7 +1386,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AbpClaimTypes");
+                    b.ToTable("AbpClaimTypes", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.Identity.IdentityLinkUser", b =>
@@ -1407,7 +1411,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                     b.HasIndex("SourceUserId", "SourceTenantId", "TargetUserId", "TargetTenantId")
                         .IsUnique();
 
-                    b.ToTable("AbpLinkUsers");
+                    b.ToTable("AbpLinkUsers", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.Identity.IdentityRole", b =>
@@ -1455,7 +1459,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasIndex("NormalizedName");
 
-                    b.ToTable("AbpRoles");
+                    b.ToTable("AbpRoles", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.Identity.IdentityRoleClaim", b =>
@@ -1483,7 +1487,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AbpRoleClaims");
+                    b.ToTable("AbpRoleClaims", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.Identity.IdentitySecurityLog", b =>
@@ -1522,7 +1526,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnType("character varying(64)");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("ExtraProperties")
                         .HasColumnType("text")
@@ -1557,7 +1561,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasIndex("TenantId", "UserId");
 
-                    b.ToTable("AbpSecurityLogs");
+                    b.ToTable("AbpSecurityLogs", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.Identity.IdentityUser", b =>
@@ -1578,7 +1582,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("ConcurrencyStamp");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("CreationTime");
 
                     b.Property<Guid?>("CreatorId")
@@ -1590,7 +1594,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("DeleterId");
 
                     b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("DeletionTime");
 
                     b.Property<string>("Email")
@@ -1609,6 +1613,9 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnType("text")
                         .HasColumnName("ExtraProperties");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
@@ -1622,7 +1629,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("IsExternal");
 
                     b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("LastModificationTime");
 
                     b.Property<Guid?>("LastModifierId")
@@ -1708,7 +1715,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasIndex("UserName");
 
-                    b.ToTable("AbpUsers");
+                    b.ToTable("AbpUsers", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.Identity.IdentityUserClaim", b =>
@@ -1736,7 +1743,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AbpUserClaims");
+                    b.ToTable("AbpUserClaims", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.Identity.IdentityUserLogin", b =>
@@ -1765,7 +1772,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasIndex("LoginProvider", "ProviderKey");
 
-                    b.ToTable("AbpUserLogins");
+                    b.ToTable("AbpUserLogins", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.Identity.IdentityUserOrganizationUnit", b =>
@@ -1777,7 +1784,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("CreationTime");
 
                     b.Property<Guid?>("CreatorId")
@@ -1792,7 +1799,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasIndex("UserId", "OrganizationUnitId");
 
-                    b.ToTable("AbpUserOrganizationUnits");
+                    b.ToTable("AbpUserOrganizationUnits", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.Identity.IdentityUserRole", b =>
@@ -1811,7 +1818,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasIndex("RoleId", "UserId");
 
-                    b.ToTable("AbpUserRoles");
+                    b.ToTable("AbpUserRoles", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.Identity.IdentityUserToken", b =>
@@ -1836,7 +1843,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("AbpUserTokens");
+                    b.ToTable("AbpUserTokens", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.Identity.OrganizationUnit", b =>
@@ -1857,7 +1864,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("ConcurrencyStamp");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("CreationTime");
 
                     b.Property<Guid?>("CreatorId")
@@ -1869,7 +1876,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("DeleterId");
 
                     b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("DeletionTime");
 
                     b.Property<string>("DisplayName")
@@ -1889,7 +1896,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("IsDeleted");
 
                     b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("LastModificationTime");
 
                     b.Property<Guid?>("LastModifierId")
@@ -1909,7 +1916,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasIndex("ParentId");
 
-                    b.ToTable("AbpOrganizationUnits");
+                    b.ToTable("AbpOrganizationUnits", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.Identity.OrganizationUnitRole", b =>
@@ -1921,7 +1928,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("CreationTime");
 
                     b.Property<Guid?>("CreatorId")
@@ -1936,7 +1943,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasIndex("RoleId", "OrganizationUnitId");
 
-                    b.ToTable("AbpOrganizationUnitRoles");
+                    b.ToTable("AbpOrganizationUnitRoles", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.ApiResources.ApiResource", b =>
@@ -1956,7 +1963,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("ConcurrencyStamp");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("CreationTime");
 
                     b.Property<Guid?>("CreatorId")
@@ -1968,7 +1975,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("DeleterId");
 
                     b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("DeletionTime");
 
                     b.Property<string>("Description")
@@ -1993,7 +2000,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("IsDeleted");
 
                     b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("LastModificationTime");
 
                     b.Property<Guid?>("LastModifierId")
@@ -2010,7 +2017,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("IdentityServerApiResources");
+                    b.ToTable("IdentityServerApiResources", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.ApiResources.ApiResourceClaim", b =>
@@ -2024,7 +2031,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasKey("ApiResourceId", "Type");
 
-                    b.ToTable("IdentityServerApiResourceClaims");
+                    b.ToTable("IdentityServerApiResourceClaims", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.ApiResources.ApiResourceProperty", b =>
@@ -2042,7 +2049,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasKey("ApiResourceId", "Key", "Value");
 
-                    b.ToTable("IdentityServerApiResourceProperties");
+                    b.ToTable("IdentityServerApiResourceProperties", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.ApiResources.ApiResourceScope", b =>
@@ -2056,7 +2063,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasKey("ApiResourceId", "Scope");
 
-                    b.ToTable("IdentityServerApiResourceScopes");
+                    b.ToTable("IdentityServerApiResourceScopes", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.ApiResources.ApiResourceSecret", b =>
@@ -2077,11 +2084,11 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnType("character varying(1000)");
 
                     b.Property<DateTime?>("Expiration")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("ApiResourceId", "Type", "Value");
 
-                    b.ToTable("IdentityServerApiResourceSecrets");
+                    b.ToTable("IdentityServerApiResourceSecrets", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.ApiScopes.ApiScope", b =>
@@ -2097,7 +2104,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("ConcurrencyStamp");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("CreationTime");
 
                     b.Property<Guid?>("CreatorId")
@@ -2109,7 +2116,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("DeleterId");
 
                     b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("DeletionTime");
 
                     b.Property<string>("Description")
@@ -2137,7 +2144,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("IsDeleted");
 
                     b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("LastModificationTime");
 
                     b.Property<Guid?>("LastModifierId")
@@ -2157,7 +2164,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("IdentityServerApiScopes");
+                    b.ToTable("IdentityServerApiScopes", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.ApiScopes.ApiScopeClaim", b =>
@@ -2171,7 +2178,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasKey("ApiScopeId", "Type");
 
-                    b.ToTable("IdentityServerApiScopeClaims");
+                    b.ToTable("IdentityServerApiScopeClaims", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.ApiScopes.ApiScopeProperty", b =>
@@ -2189,7 +2196,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasKey("ApiScopeId", "Key", "Value");
 
-                    b.ToTable("IdentityServerApiScopeProperties");
+                    b.ToTable("IdentityServerApiScopeProperties", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.Clients.Client", b =>
@@ -2266,7 +2273,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("CreationTime");
 
                     b.Property<Guid?>("CreatorId")
@@ -2278,7 +2285,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("DeleterId");
 
                     b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("DeletionTime");
 
                     b.Property<string>("Description")
@@ -2318,7 +2325,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("IsDeleted");
 
                     b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("LastModificationTime");
 
                     b.Property<Guid?>("LastModifierId")
@@ -2373,7 +2380,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasIndex("ClientId");
 
-                    b.ToTable("IdentityServerClients");
+                    b.ToTable("IdentityServerClients", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.Clients.ClientClaim", b =>
@@ -2391,7 +2398,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasKey("ClientId", "Type", "Value");
 
-                    b.ToTable("IdentityServerClientClaims");
+                    b.ToTable("IdentityServerClientClaims", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.Clients.ClientCorsOrigin", b =>
@@ -2405,7 +2412,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasKey("ClientId", "Origin");
 
-                    b.ToTable("IdentityServerClientCorsOrigins");
+                    b.ToTable("IdentityServerClientCorsOrigins", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.Clients.ClientGrantType", b =>
@@ -2419,7 +2426,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasKey("ClientId", "GrantType");
 
-                    b.ToTable("IdentityServerClientGrantTypes");
+                    b.ToTable("IdentityServerClientGrantTypes", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.Clients.ClientIdPRestriction", b =>
@@ -2433,7 +2440,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasKey("ClientId", "Provider");
 
-                    b.ToTable("IdentityServerClientIdPRestrictions");
+                    b.ToTable("IdentityServerClientIdPRestrictions", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.Clients.ClientPostLogoutRedirectUri", b =>
@@ -2447,7 +2454,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasKey("ClientId", "PostLogoutRedirectUri");
 
-                    b.ToTable("IdentityServerClientPostLogoutRedirectUris");
+                    b.ToTable("IdentityServerClientPostLogoutRedirectUris", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.Clients.ClientProperty", b =>
@@ -2465,7 +2472,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasKey("ClientId", "Key", "Value");
 
-                    b.ToTable("IdentityServerClientProperties");
+                    b.ToTable("IdentityServerClientProperties", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.Clients.ClientRedirectUri", b =>
@@ -2479,7 +2486,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasKey("ClientId", "RedirectUri");
 
-                    b.ToTable("IdentityServerClientRedirectUris");
+                    b.ToTable("IdentityServerClientRedirectUris", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.Clients.ClientScope", b =>
@@ -2493,7 +2500,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasKey("ClientId", "Scope");
 
-                    b.ToTable("IdentityServerClientScopes");
+                    b.ToTable("IdentityServerClientScopes", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.Clients.ClientSecret", b =>
@@ -2514,11 +2521,11 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnType("character varying(2000)");
 
                     b.Property<DateTime?>("Expiration")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("ClientId", "Type", "Value");
 
-                    b.ToTable("IdentityServerClientSecrets");
+                    b.ToTable("IdentityServerClientSecrets", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.Devices.DeviceFlowCodes", b =>
@@ -2539,7 +2546,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("ConcurrencyStamp");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("CreationTime");
 
                     b.Property<Guid?>("CreatorId")
@@ -2562,7 +2569,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.Property<DateTime?>("Expiration")
                         .IsRequired()
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("ExtraProperties")
                         .HasColumnType("text")
@@ -2590,7 +2597,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasIndex("UserCode");
 
-                    b.ToTable("IdentityServerDeviceFlowCodes");
+                    b.ToTable("IdentityServerDeviceFlowCodes", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.Grants.PersistedGrant", b =>
@@ -2611,10 +2618,10 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("ConcurrencyStamp");
 
                     b.Property<DateTime?>("ConsumedTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Data")
                         .IsRequired()
@@ -2626,7 +2633,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnType("character varying(200)");
 
                     b.Property<DateTime?>("Expiration")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("ExtraProperties")
                         .HasColumnType("text")
@@ -2656,7 +2663,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasIndex("SubjectId", "SessionId", "Type");
 
-                    b.ToTable("IdentityServerPersistedGrants");
+                    b.ToTable("IdentityServerPersistedGrants", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.IdentityResources.IdentityResource", b =>
@@ -2672,7 +2679,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("ConcurrencyStamp");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("CreationTime");
 
                     b.Property<Guid?>("CreatorId")
@@ -2684,7 +2691,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("DeleterId");
 
                     b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("DeletionTime");
 
                     b.Property<string>("Description")
@@ -2712,7 +2719,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("IsDeleted");
 
                     b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("LastModificationTime");
 
                     b.Property<Guid?>("LastModifierId")
@@ -2732,7 +2739,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("IdentityServerIdentityResources");
+                    b.ToTable("IdentityServerIdentityResources", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.IdentityResources.IdentityResourceClaim", b =>
@@ -2746,7 +2753,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasKey("IdentityResourceId", "Type");
 
-                    b.ToTable("IdentityServerIdentityResourceClaims");
+                    b.ToTable("IdentityServerIdentityResourceClaims", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.IdentityResources.IdentityResourceProperty", b =>
@@ -2764,7 +2771,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasKey("IdentityResourceId", "Key", "Value");
 
-                    b.ToTable("IdentityServerIdentityResourceProperties");
+                    b.ToTable("IdentityServerIdentityResourceProperties", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.PermissionManagement.PermissionGrant", b =>
@@ -2794,9 +2801,10 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Name", "ProviderName", "ProviderKey");
+                    b.HasIndex("TenantId", "Name", "ProviderName", "ProviderKey")
+                        .IsUnique();
 
-                    b.ToTable("AbpPermissionGrants");
+                    b.ToTable("AbpPermissionGrants", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.SettingManagement.Setting", b =>
@@ -2825,9 +2833,10 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Name", "ProviderName", "ProviderKey");
+                    b.HasIndex("Name", "ProviderName", "ProviderKey")
+                        .IsUnique();
 
-                    b.ToTable("AbpSettings");
+                    b.ToTable("AbpSettings", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.TenantManagement.Tenant", b =>
@@ -2842,7 +2851,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("ConcurrencyStamp");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("CreationTime");
 
                     b.Property<Guid?>("CreatorId")
@@ -2854,7 +2863,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("DeleterId");
 
                     b.Property<DateTime?>("DeletionTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("DeletionTime");
 
                     b.Property<string>("ExtraProperties")
@@ -2868,7 +2877,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         .HasColumnName("IsDeleted");
 
                     b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("LastModificationTime");
 
                     b.Property<Guid?>("LastModifierId")
@@ -2884,7 +2893,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasIndex("Name");
 
-                    b.ToTable("AbpTenants");
+                    b.ToTable("AbpTenants", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.TenantManagement.TenantConnectionString", b =>
@@ -2903,7 +2912,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
 
                     b.HasKey("TenantId", "Name");
 
-                    b.ToTable("AbpTenantConnectionStrings");
+                    b.ToTable("AbpTenantConnectionStrings", (string)null);
                 });
 
             modelBuilder.Entity("EasyAbp.AbpModuleHub.Modules.ModuleProduct", b =>

@@ -1,9 +1,11 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
+#nullable disable
+
 namespace EasyAbp.AbpModuleHub.Migrations
 {
-    public partial class Migrations_20211227_01 : Migration
+    public partial class Initial501 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -19,7 +21,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                     TenantName = table.Column<string>(type: "text", nullable: true),
                     ImpersonatorUserId = table.Column<Guid>(type: "uuid", nullable: true),
                     ImpersonatorTenantId = table.Column<Guid>(type: "uuid", nullable: true),
-                    ExecutionTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    ExecutionTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     ExecutionDuration = table.Column<int>(type: "integer", nullable: false),
                     ClientIpAddress = table.Column<string>(type: "character varying(64)", maxLength: 64, nullable: true),
                     ClientName = table.Column<string>(type: "character varying(128)", maxLength: 128, nullable: true),
@@ -47,9 +49,9 @@ namespace EasyAbp.AbpModuleHub.Migrations
                     JobName = table.Column<string>(type: "character varying(128)", maxLength: 128, nullable: false),
                     JobArgs = table.Column<string>(type: "character varying(1048576)", maxLength: 1048576, nullable: false),
                     TryCount = table.Column<short>(type: "smallint", nullable: false, defaultValue: (short)0),
-                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    NextTryTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    LastTryTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    CreationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    NextTryTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    LastTryTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     IsAbandoned = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
                     Priority = table.Column<byte>(type: "smallint", nullable: false, defaultValue: (byte)15),
                     ExtraProperties = table.Column<string>(type: "text", nullable: true),
@@ -121,13 +123,13 @@ namespace EasyAbp.AbpModuleHub.Migrations
                     DisplayName = table.Column<string>(type: "character varying(128)", maxLength: 128, nullable: false),
                     ExtraProperties = table.Column<string>(type: "text", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreatorId = table.Column<Guid>(type: "uuid", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     LastModifierId = table.Column<Guid>(type: "uuid", nullable: true),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
                     DeleterId = table.Column<Guid>(type: "uuid", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
+                    DeletionTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -136,8 +138,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                         name: "FK_AbpOrganizationUnits_AbpOrganizationUnits_ParentId",
                         column: x => x.ParentId,
                         principalTable: "AbpOrganizationUnits",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -190,7 +191,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                     CorrelationId = table.Column<string>(type: "character varying(64)", maxLength: 64, nullable: true),
                     ClientIpAddress = table.Column<string>(type: "character varying(64)", maxLength: 64, nullable: true),
                     BrowserInfo = table.Column<string>(type: "character varying(512)", maxLength: 512, nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     ExtraProperties = table.Column<string>(type: "text", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true)
                 },
@@ -222,13 +223,13 @@ namespace EasyAbp.AbpModuleHub.Migrations
                     Name = table.Column<string>(type: "character varying(64)", maxLength: 64, nullable: false),
                     ExtraProperties = table.Column<string>(type: "text", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreatorId = table.Column<Guid>(type: "uuid", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     LastModifierId = table.Column<Guid>(type: "uuid", nullable: true),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
                     DeleterId = table.Column<Guid>(type: "uuid", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
+                    DeletionTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -253,19 +254,20 @@ namespace EasyAbp.AbpModuleHub.Migrations
                     IsExternal = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
                     PhoneNumber = table.Column<string>(type: "character varying(16)", maxLength: 16, nullable: true),
                     PhoneNumberConfirmed = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
+                    IsActive = table.Column<bool>(type: "boolean", nullable: false),
                     TwoFactorEnabled = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
                     LockoutEnd = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
                     LockoutEnabled = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
                     AccessFailedCount = table.Column<int>(type: "integer", nullable: false, defaultValue: 0),
                     ExtraProperties = table.Column<string>(type: "text", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreatorId = table.Column<Guid>(type: "uuid", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     LastModifierId = table.Column<Guid>(type: "uuid", nullable: true),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
                     DeleterId = table.Column<Guid>(type: "uuid", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
+                    DeletionTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -289,7 +291,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "EasyAbp.EShop.Categories",
+                name: "EasyAbpEShopProductsCategories",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -304,27 +306,26 @@ namespace EasyAbp.AbpModuleHub.Migrations
                     ParentId = table.Column<Guid>(type: "uuid", nullable: true),
                     ExtraProperties = table.Column<string>(type: "text", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreatorId = table.Column<Guid>(type: "uuid", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     LastModifierId = table.Column<Guid>(type: "uuid", nullable: true),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
                     DeleterId = table.Column<Guid>(type: "uuid", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
+                    DeletionTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EasyAbp.EShop.Categories", x => x.Id);
+                    table.PrimaryKey("PK_EasyAbpEShopProductsCategories", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_EasyAbp.EShop.Categories_EasyAbp.EShop.Categories_ParentId",
+                        name: "FK_EasyAbpEShopProductsCategories_EasyAbpEShopProductsCategori~",
                         column: x => x.ParentId,
-                        principalTable: "EasyAbp.EShop.Categories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalTable: "EasyAbpEShopProductsCategories",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "EasyAbp.EShop.ProductCategories",
+                name: "EasyAbpEShopProductsProductCategories",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -334,35 +335,35 @@ namespace EasyAbp.AbpModuleHub.Migrations
                     DisplayOrder = table.Column<int>(type: "integer", nullable: false),
                     ExtraProperties = table.Column<string>(type: "text", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreatorId = table.Column<Guid>(type: "uuid", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     LastModifierId = table.Column<Guid>(type: "uuid", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EasyAbp.EShop.ProductCategories", x => x.Id);
+                    table.PrimaryKey("PK_EasyAbpEShopProductsProductCategories", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "EasyAbp.EShop.ProductDetailHistories",
+                name: "EasyAbpEShopProductsProductDetailHistories",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     TenantId = table.Column<Guid>(type: "uuid", nullable: true),
                     ProductDetailId = table.Column<Guid>(type: "uuid", nullable: false),
-                    ModificationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    ModificationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     SerializedEntityData = table.Column<string>(type: "text", nullable: true),
                     ExtraProperties = table.Column<string>(type: "text", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EasyAbp.EShop.ProductDetailHistories", x => x.Id);
+                    table.PrimaryKey("PK_EasyAbpEShopProductsProductDetailHistories", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "EasyAbp.EShop.ProductDetails",
+                name: "EasyAbpEShopProductsProductDetails",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -371,38 +372,38 @@ namespace EasyAbp.AbpModuleHub.Migrations
                     Description = table.Column<string>(type: "text", nullable: true),
                     ExtraProperties = table.Column<string>(type: "text", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreatorId = table.Column<Guid>(type: "uuid", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     LastModifierId = table.Column<Guid>(type: "uuid", nullable: true),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
                     DeleterId = table.Column<Guid>(type: "uuid", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
+                    DeletionTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EasyAbp.EShop.ProductDetails", x => x.Id);
+                    table.PrimaryKey("PK_EasyAbpEShopProductsProductDetails", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "EasyAbp.EShop.ProductHistories",
+                name: "EasyAbpEShopProductsProductHistories",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     TenantId = table.Column<Guid>(type: "uuid", nullable: true),
                     ProductId = table.Column<Guid>(type: "uuid", nullable: false),
-                    ModificationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    ModificationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     SerializedEntityData = table.Column<string>(type: "text", nullable: true),
                     ExtraProperties = table.Column<string>(type: "text", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EasyAbp.EShop.ProductHistories", x => x.Id);
+                    table.PrimaryKey("PK_EasyAbpEShopProductsProductHistories", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "EasyAbp.EShop.ProductInventories",
+                name: "EasyAbpEShopProductsProductInventories",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -413,21 +414,21 @@ namespace EasyAbp.AbpModuleHub.Migrations
                     Sold = table.Column<long>(type: "bigint", nullable: false),
                     ExtraProperties = table.Column<string>(type: "text", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreatorId = table.Column<Guid>(type: "uuid", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     LastModifierId = table.Column<Guid>(type: "uuid", nullable: true),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
                     DeleterId = table.Column<Guid>(type: "uuid", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
+                    DeletionTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EasyAbp.EShop.ProductInventories", x => x.Id);
+                    table.PrimaryKey("PK_EasyAbpEShopProductsProductInventories", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "EasyAbp.EShop.Products",
+                name: "EasyAbpEShopProductsProducts",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -446,21 +447,21 @@ namespace EasyAbp.AbpModuleHub.Migrations
                     PaymentExpireIn = table.Column<TimeSpan>(type: "interval", nullable: true),
                     ExtraProperties = table.Column<string>(type: "text", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreatorId = table.Column<Guid>(type: "uuid", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     LastModifierId = table.Column<Guid>(type: "uuid", nullable: true),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
                     DeleterId = table.Column<Guid>(type: "uuid", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
+                    DeletionTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EasyAbp.EShop.Products", x => x.Id);
+                    table.PrimaryKey("PK_EasyAbpEShopProductsProducts", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "EasyAbp.EShop.ProductViews",
+                name: "EasyAbpEShopProductsProductViews",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -477,21 +478,21 @@ namespace EasyAbp.AbpModuleHub.Migrations
                     IsStatic = table.Column<bool>(type: "boolean", nullable: false),
                     IsHidden = table.Column<bool>(type: "boolean", nullable: false),
                     ProductGroupDisplayName = table.Column<string>(type: "text", nullable: true),
-                    MinimumPrice = table.Column<decimal>(type: "decimal(20,8)", nullable: true),
-                    MaximumPrice = table.Column<decimal>(type: "decimal(20,8)", nullable: true),
+                    MinimumPrice = table.Column<decimal>(type: "numeric(20,8)", nullable: true),
+                    MaximumPrice = table.Column<decimal>(type: "numeric(20,8)", nullable: true),
                     Sold = table.Column<long>(type: "bigint", nullable: false),
                     ExtraProperties = table.Column<string>(type: "text", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreatorId = table.Column<Guid>(type: "uuid", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EasyAbp.EShop.ProductViews", x => x.Id);
+                    table.PrimaryKey("PK_EasyAbpEShopProductsProductViews", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "EasyAbp.EShop.StoreOwners",
+                name: "EasyAbpEShopStoresStoreOwners",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -500,18 +501,18 @@ namespace EasyAbp.AbpModuleHub.Migrations
                     OwnerUserId = table.Column<Guid>(type: "uuid", nullable: false),
                     ExtraProperties = table.Column<string>(type: "text", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreatorId = table.Column<Guid>(type: "uuid", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     LastModifierId = table.Column<Guid>(type: "uuid", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EasyAbp.EShop.StoreOwners", x => x.Id);
+                    table.PrimaryKey("PK_EasyAbpEShopStoresStoreOwners", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "EasyAbp.EShop.Stores",
+                name: "EasyAbpEShopStoresStores",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -519,21 +520,21 @@ namespace EasyAbp.AbpModuleHub.Migrations
                     Name = table.Column<string>(type: "text", nullable: true),
                     ExtraProperties = table.Column<string>(type: "text", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreatorId = table.Column<Guid>(type: "uuid", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     LastModifierId = table.Column<Guid>(type: "uuid", nullable: true),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
                     DeleterId = table.Column<Guid>(type: "uuid", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
+                    DeletionTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EasyAbp.EShop.Stores", x => x.Id);
+                    table.PrimaryKey("PK_EasyAbpEShopStoresStores", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "EasyAbp.EShop.Transactions",
+                name: "EasyAbpEShopStoresTransactions",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -543,15 +544,15 @@ namespace EasyAbp.AbpModuleHub.Migrations
                     TransactionType = table.Column<int>(type: "integer", nullable: false),
                     ActionName = table.Column<string>(type: "text", nullable: true),
                     Currency = table.Column<string>(type: "text", nullable: true),
-                    Amount = table.Column<decimal>(type: "decimal(20,8)", nullable: false),
+                    Amount = table.Column<decimal>(type: "numeric(20,8)", nullable: false),
                     ExtraProperties = table.Column<string>(type: "text", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreatorId = table.Column<Guid>(type: "uuid", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EasyAbp.EShop.Transactions", x => x.Id);
+                    table.PrimaryKey("PK_EasyAbpEShopStoresTransactions", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -567,13 +568,13 @@ namespace EasyAbp.AbpModuleHub.Migrations
                     ShowInDiscoveryDocument = table.Column<bool>(type: "boolean", nullable: false),
                     ExtraProperties = table.Column<string>(type: "text", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreatorId = table.Column<Guid>(type: "uuid", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     LastModifierId = table.Column<Guid>(type: "uuid", nullable: true),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
                     DeleterId = table.Column<Guid>(type: "uuid", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
+                    DeletionTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -594,13 +595,13 @@ namespace EasyAbp.AbpModuleHub.Migrations
                     ShowInDiscoveryDocument = table.Column<bool>(type: "boolean", nullable: false),
                     ExtraProperties = table.Column<string>(type: "text", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreatorId = table.Column<Guid>(type: "uuid", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     LastModifierId = table.Column<Guid>(type: "uuid", nullable: true),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
                     DeleterId = table.Column<Guid>(type: "uuid", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
+                    DeletionTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -653,13 +654,13 @@ namespace EasyAbp.AbpModuleHub.Migrations
                     DeviceCodeLifetime = table.Column<int>(type: "integer", nullable: false),
                     ExtraProperties = table.Column<string>(type: "text", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreatorId = table.Column<Guid>(type: "uuid", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     LastModifierId = table.Column<Guid>(type: "uuid", nullable: true),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
                     DeleterId = table.Column<Guid>(type: "uuid", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
+                    DeletionTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -677,11 +678,11 @@ namespace EasyAbp.AbpModuleHub.Migrations
                     SessionId = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
                     ClientId = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
                     Description = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: true),
-                    Expiration = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    Expiration = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     Data = table.Column<string>(type: "character varying(50000)", maxLength: 50000, nullable: false),
                     ExtraProperties = table.Column<string>(type: "text", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreatorId = table.Column<Guid>(type: "uuid", nullable: true)
                 },
                 constraints: table =>
@@ -703,13 +704,13 @@ namespace EasyAbp.AbpModuleHub.Migrations
                     ShowInDiscoveryDocument = table.Column<bool>(type: "boolean", nullable: false),
                     ExtraProperties = table.Column<string>(type: "text", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreatorId = table.Column<Guid>(type: "uuid", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     LastModifierId = table.Column<Guid>(type: "uuid", nullable: true),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
                     DeleterId = table.Column<Guid>(type: "uuid", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
+                    DeletionTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -726,9 +727,9 @@ namespace EasyAbp.AbpModuleHub.Migrations
                     SessionId = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
                     ClientId = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
                     Description = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    Expiration = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    ConsumedTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    CreationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Expiration = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    ConsumedTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     Data = table.Column<string>(type: "character varying(50000)", maxLength: 50000, nullable: false),
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     ExtraProperties = table.Column<string>(type: "text", nullable: true),
@@ -749,7 +750,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                     ServiceName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     MethodName = table.Column<string>(type: "character varying(128)", maxLength: 128, nullable: true),
                     Parameters = table.Column<string>(type: "character varying(2000)", maxLength: 2000, nullable: true),
-                    ExecutionTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    ExecutionTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     ExecutionDuration = table.Column<int>(type: "integer", nullable: false),
                     ExtraProperties = table.Column<string>(type: "text", nullable: true)
                 },
@@ -771,7 +772,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     AuditLogId = table.Column<Guid>(type: "uuid", nullable: false),
                     TenantId = table.Column<Guid>(type: "uuid", nullable: true),
-                    ChangeTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    ChangeTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     ChangeType = table.Column<byte>(type: "smallint", nullable: false),
                     EntityTenantId = table.Column<Guid>(type: "uuid", nullable: true),
                     EntityId = table.Column<string>(type: "character varying(128)", maxLength: 128, nullable: false),
@@ -796,7 +797,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                     RoleId = table.Column<Guid>(type: "uuid", nullable: false),
                     OrganizationUnitId = table.Column<Guid>(type: "uuid", nullable: false),
                     TenantId = table.Column<Guid>(type: "uuid", nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreatorId = table.Column<Guid>(type: "uuid", nullable: true)
                 },
                 constraints: table =>
@@ -905,7 +906,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                     UserId = table.Column<Guid>(type: "uuid", nullable: false),
                     OrganizationUnitId = table.Column<Guid>(type: "uuid", nullable: false),
                     TenantId = table.Column<Guid>(type: "uuid", nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreatorId = table.Column<Guid>(type: "uuid", nullable: true)
                 },
                 constraints: table =>
@@ -985,27 +986,27 @@ namespace EasyAbp.AbpModuleHub.Migrations
                     ModuleTypeId = table.Column<Guid>(type: "uuid", nullable: true),
                     ExtraProperties = table.Column<string>(type: "text", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreatorId = table.Column<Guid>(type: "uuid", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     LastModifierId = table.Column<Guid>(type: "uuid", nullable: true),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
                     DeleterId = table.Column<Guid>(type: "uuid", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
+                    DeletionTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AppModules", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AppModules_EasyAbp.EShop.Products_ProductId",
+                        name: "FK_AppModules_EasyAbpEShopProductsProducts_ProductId",
                         column: x => x.ProductId,
-                        principalTable: "EasyAbp.EShop.Products",
+                        principalTable: "EasyAbpEShopProductsProducts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "EasyAbp.EShop.ProductAttributes",
+                name: "EasyAbpEShopProductsProductAttributes",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -1014,35 +1015,34 @@ namespace EasyAbp.AbpModuleHub.Migrations
                     DisplayOrder = table.Column<int>(type: "integer", nullable: false),
                     ExtraProperties = table.Column<string>(type: "text", nullable: true),
                     ProductId = table.Column<Guid>(type: "uuid", nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreatorId = table.Column<Guid>(type: "uuid", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     LastModifierId = table.Column<Guid>(type: "uuid", nullable: true),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
                     DeleterId = table.Column<Guid>(type: "uuid", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
+                    DeletionTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EasyAbp.EShop.ProductAttributes", x => x.Id);
+                    table.PrimaryKey("PK_EasyAbpEShopProductsProductAttributes", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_EasyAbp.EShop.ProductAttributes_EasyAbp.EShop.Products_Prod~",
+                        name: "FK_EasyAbpEShopProductsProductAttributes_EasyAbpEShopProductsP~",
                         column: x => x.ProductId,
-                        principalTable: "EasyAbp.EShop.Products",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalTable: "EasyAbpEShopProductsProducts",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "EasyAbp.EShop.ProductSkus",
+                name: "EasyAbpEShopProductsProductSkus",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     SerializedAttributeOptionIds = table.Column<string>(type: "text", nullable: true),
                     Name = table.Column<string>(type: "text", nullable: true),
                     Currency = table.Column<string>(type: "text", nullable: true),
-                    OriginalPrice = table.Column<decimal>(type: "decimal(20,8)", nullable: true),
-                    Price = table.Column<decimal>(type: "decimal(20,8)", nullable: false),
+                    OriginalPrice = table.Column<decimal>(type: "numeric(20,8)", nullable: true),
+                    Price = table.Column<decimal>(type: "numeric(20,8)", nullable: false),
                     OrderMinQuantity = table.Column<int>(type: "integer", nullable: false),
                     OrderMaxQuantity = table.Column<int>(type: "integer", nullable: false),
                     PaymentExpireIn = table.Column<TimeSpan>(type: "interval", nullable: true),
@@ -1050,23 +1050,22 @@ namespace EasyAbp.AbpModuleHub.Migrations
                     ProductDetailId = table.Column<Guid>(type: "uuid", nullable: true),
                     ExtraProperties = table.Column<string>(type: "text", nullable: true),
                     ProductId = table.Column<Guid>(type: "uuid", nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreatorId = table.Column<Guid>(type: "uuid", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     LastModifierId = table.Column<Guid>(type: "uuid", nullable: true),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
                     DeleterId = table.Column<Guid>(type: "uuid", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
+                    DeletionTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EasyAbp.EShop.ProductSkus", x => x.Id);
+                    table.PrimaryKey("PK_EasyAbpEShopProductsProductSkus", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_EasyAbp.EShop.ProductSkus_EasyAbp.EShop.Products_ProductId",
+                        name: "FK_EasyAbpEShopProductsProductSkus_EasyAbpEShopProductsProduct~",
                         column: x => x.ProductId,
-                        principalTable: "EasyAbp.EShop.Products",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalTable: "EasyAbpEShopProductsProducts",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -1132,7 +1131,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                     Value = table.Column<string>(type: "character varying(4000)", maxLength: 4000, nullable: false),
                     ApiResourceId = table.Column<Guid>(type: "uuid", nullable: false),
                     Description = table.Column<string>(type: "character varying(1000)", maxLength: 1000, nullable: true),
-                    Expiration = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
+                    Expiration = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -1336,7 +1335,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                     Value = table.Column<string>(type: "character varying(4000)", maxLength: 4000, nullable: false),
                     ClientId = table.Column<Guid>(type: "uuid", nullable: false),
                     Description = table.Column<string>(type: "character varying(2000)", maxLength: 2000, nullable: true),
-                    Expiration = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
+                    Expiration = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -1410,7 +1409,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "EasyAbp.EShop.ProductAttributeOptions",
+                name: "EasyAbpEShopProductsProductAttributeOptions",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -1419,23 +1418,22 @@ namespace EasyAbp.AbpModuleHub.Migrations
                     DisplayOrder = table.Column<int>(type: "integer", nullable: false),
                     ExtraProperties = table.Column<string>(type: "text", nullable: true),
                     ProductAttributeId = table.Column<Guid>(type: "uuid", nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreatorId = table.Column<Guid>(type: "uuid", nullable: true),
-                    LastModificationTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     LastModifierId = table.Column<Guid>(type: "uuid", nullable: true),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false, defaultValue: false),
                     DeleterId = table.Column<Guid>(type: "uuid", nullable: true),
-                    DeletionTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
+                    DeletionTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EasyAbp.EShop.ProductAttributeOptions", x => x.Id);
+                    table.PrimaryKey("PK_EasyAbpEShopProductsProductAttributeOptions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_EasyAbp.EShop.ProductAttributeOptions_EasyAbp.EShop.Product~",
+                        name: "FK_EasyAbpEShopProductsProductAttributeOptions_EasyAbpEShopPro~",
                         column: x => x.ProductAttributeId,
-                        principalTable: "EasyAbp.EShop.ProductAttributes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalTable: "EasyAbpEShopProductsProductAttributes",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -1481,7 +1479,8 @@ namespace EasyAbp.AbpModuleHub.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_AbpFeatureValues_Name_ProviderName_ProviderKey",
                 table: "AbpFeatureValues",
-                columns: new[] { "Name", "ProviderName", "ProviderKey" });
+                columns: new[] { "Name", "ProviderName", "ProviderKey" },
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_AbpLinkUsers_SourceUserId_SourceTenantId_TargetUserId_Targe~",
@@ -1505,9 +1504,10 @@ namespace EasyAbp.AbpModuleHub.Migrations
                 column: "ParentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AbpPermissionGrants_Name_ProviderName_ProviderKey",
+                name: "IX_AbpPermissionGrants_TenantId_Name_ProviderName_ProviderKey",
                 table: "AbpPermissionGrants",
-                columns: new[] { "Name", "ProviderName", "ProviderKey" });
+                columns: new[] { "TenantId", "Name", "ProviderName", "ProviderKey" },
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_AbpRoleClaims_RoleId",
@@ -1542,7 +1542,8 @@ namespace EasyAbp.AbpModuleHub.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_AbpSettings_Name_ProviderName_ProviderKey",
                 table: "AbpSettings",
-                columns: new[] { "Name", "ProviderName", "ProviderKey" });
+                columns: new[] { "Name", "ProviderName", "ProviderKey" },
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_AbpTenants_Name",
@@ -1595,63 +1596,63 @@ namespace EasyAbp.AbpModuleHub.Migrations
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EasyAbp.EShop.Categories_ParentId",
-                table: "EasyAbp.EShop.Categories",
+                name: "IX_EasyAbpEShopProductsCategories_ParentId",
+                table: "EasyAbpEShopProductsCategories",
                 column: "ParentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EasyAbp.EShop.ProductAttributeOptions_ProductAttributeId",
-                table: "EasyAbp.EShop.ProductAttributeOptions",
+                name: "IX_EasyAbpEShopProductsProductAttributeOptions_ProductAttribut~",
+                table: "EasyAbpEShopProductsProductAttributeOptions",
                 column: "ProductAttributeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EasyAbp.EShop.ProductAttributes_ProductId",
-                table: "EasyAbp.EShop.ProductAttributes",
+                name: "IX_EasyAbpEShopProductsProductAttributes_ProductId",
+                table: "EasyAbpEShopProductsProductAttributes",
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EasyAbp.EShop.ProductDetailHistories_ModificationTime",
-                table: "EasyAbp.EShop.ProductDetailHistories",
+                name: "IX_EasyAbpEShopProductsProductDetailHistories_ModificationTime",
+                table: "EasyAbpEShopProductsProductDetailHistories",
                 column: "ModificationTime");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EasyAbp.EShop.ProductDetailHistories_ProductDetailId",
-                table: "EasyAbp.EShop.ProductDetailHistories",
+                name: "IX_EasyAbpEShopProductsProductDetailHistories_ProductDetailId",
+                table: "EasyAbpEShopProductsProductDetailHistories",
                 column: "ProductDetailId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EasyAbp.EShop.ProductHistories_ModificationTime",
-                table: "EasyAbp.EShop.ProductHistories",
+                name: "IX_EasyAbpEShopProductsProductHistories_ModificationTime",
+                table: "EasyAbpEShopProductsProductHistories",
                 column: "ModificationTime");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EasyAbp.EShop.ProductHistories_ProductId",
-                table: "EasyAbp.EShop.ProductHistories",
+                name: "IX_EasyAbpEShopProductsProductHistories_ProductId",
+                table: "EasyAbpEShopProductsProductHistories",
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EasyAbp.EShop.ProductInventories_ProductSkuId",
-                table: "EasyAbp.EShop.ProductInventories",
+                name: "IX_EasyAbpEShopProductsProductInventories_ProductSkuId",
+                table: "EasyAbpEShopProductsProductInventories",
                 column: "ProductSkuId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EasyAbp.EShop.Products_UniqueName",
-                table: "EasyAbp.EShop.Products",
+                name: "IX_EasyAbpEShopProductsProducts_UniqueName",
+                table: "EasyAbpEShopProductsProducts",
                 column: "UniqueName");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EasyAbp.EShop.ProductSkus_ProductId",
-                table: "EasyAbp.EShop.ProductSkus",
+                name: "IX_EasyAbpEShopProductsProductSkus_ProductId",
+                table: "EasyAbpEShopProductsProductSkus",
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EasyAbp.EShop.ProductViews_UniqueName",
-                table: "EasyAbp.EShop.ProductViews",
+                name: "IX_EasyAbpEShopProductsProductViews_UniqueName",
+                table: "EasyAbpEShopProductsProductViews",
                 column: "UniqueName");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EasyAbp.EShop.StoreOwners_OwnerUserId_StoreId",
-                table: "EasyAbp.EShop.StoreOwners",
+                name: "IX_EasyAbpEShopStoresStoreOwners_OwnerUserId_StoreId",
+                table: "EasyAbpEShopStoresStoreOwners",
                 columns: new[] { "OwnerUserId", "StoreId" },
                 unique: true);
 
@@ -1752,40 +1753,40 @@ namespace EasyAbp.AbpModuleHub.Migrations
                 name: "AppModuleTypes");
 
             migrationBuilder.DropTable(
-                name: "EasyAbp.EShop.Categories");
+                name: "EasyAbpEShopProductsCategories");
 
             migrationBuilder.DropTable(
-                name: "EasyAbp.EShop.ProductAttributeOptions");
+                name: "EasyAbpEShopProductsProductAttributeOptions");
 
             migrationBuilder.DropTable(
-                name: "EasyAbp.EShop.ProductCategories");
+                name: "EasyAbpEShopProductsProductCategories");
 
             migrationBuilder.DropTable(
-                name: "EasyAbp.EShop.ProductDetailHistories");
+                name: "EasyAbpEShopProductsProductDetailHistories");
 
             migrationBuilder.DropTable(
-                name: "EasyAbp.EShop.ProductDetails");
+                name: "EasyAbpEShopProductsProductDetails");
 
             migrationBuilder.DropTable(
-                name: "EasyAbp.EShop.ProductHistories");
+                name: "EasyAbpEShopProductsProductHistories");
 
             migrationBuilder.DropTable(
-                name: "EasyAbp.EShop.ProductInventories");
+                name: "EasyAbpEShopProductsProductInventories");
 
             migrationBuilder.DropTable(
-                name: "EasyAbp.EShop.ProductSkus");
+                name: "EasyAbpEShopProductsProductSkus");
 
             migrationBuilder.DropTable(
-                name: "EasyAbp.EShop.ProductViews");
+                name: "EasyAbpEShopProductsProductViews");
 
             migrationBuilder.DropTable(
-                name: "EasyAbp.EShop.StoreOwners");
+                name: "EasyAbpEShopStoresStoreOwners");
 
             migrationBuilder.DropTable(
-                name: "EasyAbp.EShop.Stores");
+                name: "EasyAbpEShopStoresStores");
 
             migrationBuilder.DropTable(
-                name: "EasyAbp.EShop.Transactions");
+                name: "EasyAbpEShopStoresTransactions");
 
             migrationBuilder.DropTable(
                 name: "IdentityServerApiResourceClaims");
@@ -1860,7 +1861,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                 name: "AbpUsers");
 
             migrationBuilder.DropTable(
-                name: "EasyAbp.EShop.ProductAttributes");
+                name: "EasyAbpEShopProductsProductAttributes");
 
             migrationBuilder.DropTable(
                 name: "IdentityServerApiResources");
@@ -1878,7 +1879,7 @@ namespace EasyAbp.AbpModuleHub.Migrations
                 name: "AbpAuditLogs");
 
             migrationBuilder.DropTable(
-                name: "EasyAbp.EShop.Products");
+                name: "EasyAbpEShopProductsProducts");
         }
     }
 }
