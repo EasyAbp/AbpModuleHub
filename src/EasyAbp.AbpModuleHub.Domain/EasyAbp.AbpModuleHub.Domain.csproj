@@ -12,8 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="EasyAbp.EShop.Products.Domain" Version="$(EasyShop)" />
-    <PackageReference Include="EasyAbp.EShop.Stores.Domain" Version="$(EasyShop)" />
+    <PackageReference Include="EasyAbp.EShop.Products.Domain" Version="$(EasyAbpEShopModuleVersion)" />
+    <PackageReference Include="EasyAbp.EShop.Stores.Domain" Version="$(EasyAbpEShopModuleVersion)" />
     <PackageReference Include="Volo.Abp.Emailing" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.Identity.Domain" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.PermissionManagement.Domain.Identity" Version="$(AbpVersion)" />
