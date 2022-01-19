@@ -1,0 +1,111 @@
+﻿@page "/Item/{id}"
+@using Microsoft.AspNetCore.Mvc.Localization
+@using EasyAbp.AbpModuleHub.Localization
+@using Volo.Abp.Users
+@model EasyAbp.AbpModuleHub.Web.Pages.ItemModel
+@inject IHtmlLocalizer<AbpModuleHubResource> L
+@inject ICurrentUser CurrentUser
+@section styles {
+    <abp-style src="/Pages/Item.css" />
+}
+@section scripts {
+    <abp-script src="/Pages/Item.js" />
+}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet" />
+
+<div class="container">
+    <!-- Product section-->
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="row gx-4 gx-lg-5 align-items-center">
+                <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="/images/module-detail-default.jpg" alt="..." /></div>
+                <div class="col-md-6">
+                    <div class="mb-1"><i class="fa fa-user-circle" aria-hidden="true"></i> Duotai</div>
+                    <h1 class="display-5 fw-bolder">Smart Export</h1>
+                    <div class="fs-5 mb-5">
+                        <span class="text-decoration-line-through">$199.00</span>
+                        <span>$99.00</span>
+                    </div>
+                    <p class="lead">An ABP general data export application module that supports the online design of export schemes.</p>
+                    <div class="d-flex">
+                        <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                            <i class="bi-cart-fill me-1"></i>
+                            Buy and install
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Related items section-->
+    <section class="py-5 bg-light">
+        <div class="container px-4 px-lg-5 mt-5">
+            <h2 class="fw-bolder mb-4">Related products</h2>
+            <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-center">
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Product image-->
+                        <img class="card-img-top" src="/images/module-default.jpg" alt="..." />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">Verification Code</h5>
+                                <p class="text-secondary"><small><i class="fa fa-user-circle" aria-hidden="true"></i> EasyAbp</small></p>
+                                <p class="text-secondary"><small>An ABP module to generate and verify verification codes.</small></p>
+                                <!-- Product price-->
+                                $0.00
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Install</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Product image-->
+                        <img class="card-img-top" src="/images/module-default.jpg" alt="..." />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">GraphQL</h5>
+                                <p class="text-secondary"><small><i class="fa fa-user-circle" aria-hidden="true"></i> EasyAbp</small></p>
+                                <p class="text-secondary"><small>An ABP module that allows using application services by GraphQL. It also accepted custom schemes and types you defined.</small></p>
+                                <!-- Product price-->
+                                $0.00
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Install</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Product image-->
+                        <img class="card-img-top" src="/images/module-default.jpg" alt="..." />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">Dynamic Menu</h5>
+                                <p class="text-secondary"><small><i class="fa fa-user-circle" aria-hidden="true"></i> EasyAbp</small></p>
+                                <p class="text-secondary"><small>An abp module that dynamically creates menu items for ABP UI projects in runtime.</small></p>
+                                <!-- Product price-->
+                                $0.00
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Install</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

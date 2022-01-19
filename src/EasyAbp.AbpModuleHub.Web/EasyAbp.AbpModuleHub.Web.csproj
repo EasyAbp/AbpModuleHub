@@ -20,6 +20,8 @@
   <ItemGroup>
     <Compile Remove="Logs\**" />
     <Content Remove="Logs\**" />
+    <Content Include="Pages\Item.css" />
+    <Content Include="Pages\Item.js" />
     <EmbeddedResource Remove="Logs\**" />
     <None Remove="Logs\**" />
     <Content Update="appsettings.secrets.json">
