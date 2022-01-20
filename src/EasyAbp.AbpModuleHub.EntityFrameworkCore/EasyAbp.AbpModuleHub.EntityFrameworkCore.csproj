@@ -9,8 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EasyAbp.AbpModuleHub.Domain\EasyAbp.AbpModuleHub.Domain.csproj" />
-    <PackageReference Include="EasyAbp.EShop.Products.EntityFrameworkCore" Version="$(EasyAbpEShopModuleVersion)" />
-    <PackageReference Include="EasyAbp.EShop.Stores.EntityFrameworkCore" Version="$(EasyAbpEShopModuleVersion)" />
+    <PackageReference Include="EasyAbp.EShop.EntityFrameworkCore" Version="$(EasyAbpEShopModuleVersion)" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.*">
       <PrivateAssets>compile; build; native; contentfiles; analyzers; buildtransitive</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>

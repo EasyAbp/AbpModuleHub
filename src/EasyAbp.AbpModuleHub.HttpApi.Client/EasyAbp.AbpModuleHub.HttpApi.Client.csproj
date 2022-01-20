@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="EasyAbp.EShop.HttpApi.Client" Version="$(EasyAbpEShopModuleVersion)" />
     <PackageReference Include="Volo.Abp.Account.HttpApi.Client" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.Identity.HttpApi.Client" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.PermissionManagement.HttpApi.Client" Version="$(AbpVersion)" />

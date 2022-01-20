@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using EasyAbp.EShop;
+using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.Account;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.Identity;
@@ -16,7 +17,8 @@ namespace EasyAbp.AbpModuleHub
         typeof(AbpPermissionManagementHttpApiClientModule),
         typeof(AbpTenantManagementHttpApiClientModule),
         typeof(AbpFeatureManagementHttpApiClientModule),
-        typeof(AbpSettingManagementHttpApiClientModule)
+        typeof(AbpSettingManagementHttpApiClientModule),
+        typeof(EShopHttpApiClientModule)
     )]
     public class AbpModuleHubHttpApiClientModule : AbpModule
     {

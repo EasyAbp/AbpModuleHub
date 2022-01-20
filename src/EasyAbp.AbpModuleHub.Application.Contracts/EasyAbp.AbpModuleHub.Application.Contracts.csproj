@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="Volo.Abp.ObjectExtending" Version="$(AbpVersion)" />
+    <PackageReference Include="EasyAbp.EShop.Application.Contracts" Version="$(EasyAbpEShopModuleVersion)" />
     <PackageReference Include="Volo.Abp.Account.Application.Contracts" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.Identity.Application.Contracts" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.PermissionManagement.Application.Contracts" Version="$(AbpVersion)" />

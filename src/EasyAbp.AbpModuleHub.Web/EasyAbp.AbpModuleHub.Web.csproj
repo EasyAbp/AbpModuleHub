@@ -48,6 +48,7 @@
     <ProjectReference Include="..\EasyAbp.AbpModuleHub.Application\EasyAbp.AbpModuleHub.Application.csproj" />
     <ProjectReference Include="..\EasyAbp.AbpModuleHub.HttpApi\EasyAbp.AbpModuleHub.HttpApi.csproj" />
     <ProjectReference Include="..\EasyAbp.AbpModuleHub.EntityFrameworkCore\EasyAbp.AbpModuleHub.EntityFrameworkCore.csproj" />
+    <PackageReference Include="EasyAbp.EShop.Web" Version="$(EasyAbpEShopModuleVersion)" />
     <PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.Autofac" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.Swashbuckle" Version="$(AbpVersion)" />

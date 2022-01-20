@@ -1,4 +1,5 @@
 ﻿using EasyAbp.AbpModuleHub.Localization;
+using EasyAbp.EShop;
 using Volo.Abp.AuditLogging;
 using Volo.Abp.BackgroundJobs;
 using Volo.Abp.FeatureManagement;
@@ -23,8 +24,9 @@ namespace EasyAbp.AbpModuleHub
         typeof(AbpIdentityServerDomainSharedModule),
         typeof(AbpPermissionManagementDomainSharedModule),
         typeof(AbpSettingManagementDomainSharedModule),
-        typeof(AbpTenantManagementDomainSharedModule)
-        )]
+        typeof(AbpTenantManagementDomainSharedModule),
+        typeof(EShopDomainSharedModule)
+    )]
     public class AbpModuleHubDomainSharedModule : AbpModule
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)

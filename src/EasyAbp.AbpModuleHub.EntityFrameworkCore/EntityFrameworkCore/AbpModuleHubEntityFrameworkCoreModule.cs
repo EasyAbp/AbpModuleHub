@@ -1,7 +1,4 @@
-﻿using EasyAbp.EShop.Products;
-using EasyAbp.EShop.Products.EntityFrameworkCore;
-using EasyAbp.EShop.Stores;
-using EasyAbp.EShop.Stores.EntityFrameworkCore;
+﻿using EasyAbp.EShop.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
@@ -29,8 +26,7 @@ namespace EasyAbp.AbpModuleHub.EntityFrameworkCore
         typeof(AbpAuditLoggingEntityFrameworkCoreModule),
         typeof(AbpTenantManagementEntityFrameworkCoreModule),
         typeof(AbpFeatureManagementEntityFrameworkCoreModule),
-        typeof(EShopProductsEntityFrameworkCoreModule),
-        typeof(EShopStoresEntityFrameworkCoreModule)
+        typeof(EShopEntityFrameworkCoreModule)
     )]
     public class AbpModuleHubEntityFrameworkCoreModule : AbpModule
     {

@@ -1,6 +1,5 @@
 ﻿using EasyAbp.AbpModuleHub.Modules;
-using EasyAbp.EShop.Products.EntityFrameworkCore;
-using EasyAbp.EShop.Stores.EntityFrameworkCore;
+using EasyAbp.EShop.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
@@ -54,11 +53,11 @@ namespace EasyAbp.AbpModuleHub.EntityFrameworkCore
         public DbSet<Tenant> Tenants { get; set; }
         public DbSet<TenantConnectionString> TenantConnectionStrings { get; set; }
 
+        #endregion
+
         // Hub Entities
         public DbSet<ModuleProduct> ModuleProducts { get; set; }
         public DbSet<ModuleType> ModuleTypes { get; set; }
-
-        #endregion
 
         public AbpModuleHubDbContext(DbContextOptions<AbpModuleHubDbContext> options)
             : base(options)
@@ -79,8 +78,7 @@ namespace EasyAbp.AbpModuleHub.EntityFrameworkCore
             builder.ConfigureIdentityServer();
             builder.ConfigureFeatureManagement();
             builder.ConfigureTenantManagement();
-            builder.ConfigureEShopProducts();
-            builder.ConfigureEShopStores();
+            builder.ConfigureEShop();
 
             /* Configure your own tables/entities inside here */
 

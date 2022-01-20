@@ -9,6 +9,7 @@ using EasyAbp.AbpModuleHub.EntityFrameworkCore;
 using EasyAbp.AbpModuleHub.Localization;
 using EasyAbp.AbpModuleHub.MultiTenancy;
 using EasyAbp.AbpModuleHub.Web.Menus;
+using EasyAbp.EShop.Web;
 using Microsoft.OpenApi.Models;
 using Volo.Abp;
 using Volo.Abp.Account.Web;
@@ -52,8 +53,9 @@ namespace EasyAbp.AbpModuleHub.Web
         typeof(AbpAspNetCoreAuthenticationJwtBearerModule),
         typeof(AbpTenantManagementWebModule),
         typeof(AbpAspNetCoreSerilogModule),
-        typeof(AbpSwashbuckleModule)
-        )]
+        typeof(AbpSwashbuckleModule),
+        typeof(EShopWebModule)
+    )]
     public class AbpModuleHubWebModule : AbpModule
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)

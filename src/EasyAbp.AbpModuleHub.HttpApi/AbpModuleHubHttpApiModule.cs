@@ -1,5 +1,6 @@
 ﻿using Localization.Resources.AbpUi;
 using EasyAbp.AbpModuleHub.Localization;
+using EasyAbp.EShop;
 using Volo.Abp.Account;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.Identity;
@@ -18,8 +19,9 @@ namespace EasyAbp.AbpModuleHub
         typeof(AbpPermissionManagementHttpApiModule),
         typeof(AbpTenantManagementHttpApiModule),
         typeof(AbpFeatureManagementHttpApiModule),
-        typeof(AbpSettingManagementHttpApiModule)
-        )]
+        typeof(AbpSettingManagementHttpApiModule),
+        typeof(EShopHttpApiModule)
+    )]
     public class AbpModuleHubHttpApiModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)

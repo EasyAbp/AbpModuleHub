@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="EasyAbp.EShop.Application" Version="$(EasyAbpEShopModuleVersion)" />
     <PackageReference Include="Volo.Abp.Account.Application" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.Identity.Application" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.PermissionManagement.Application" Version="$(AbpVersion)" />

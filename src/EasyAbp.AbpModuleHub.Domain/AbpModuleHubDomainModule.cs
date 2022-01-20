@@ -1,8 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using EasyAbp.AbpModuleHub.MultiTenancy;
-using EasyAbp.EShop.Products;
-using EasyAbp.EShop.Stores;
+using EasyAbp.EShop;
 using Volo.Abp.AuditLogging;
 using Volo.Abp.BackgroundJobs;
 using Volo.Abp.Emailing;
@@ -30,8 +29,7 @@ namespace EasyAbp.AbpModuleHub
         typeof(AbpSettingManagementDomainModule),
         typeof(AbpTenantManagementDomainModule),
         typeof(AbpEmailingModule),
-        typeof(EShopProductsDomainModule),
-        typeof(EShopStoresDomainModule)
+        typeof(EShopDomainModule)
     )]
     public class AbpModuleHubDomainModule : AbpModule
     {
