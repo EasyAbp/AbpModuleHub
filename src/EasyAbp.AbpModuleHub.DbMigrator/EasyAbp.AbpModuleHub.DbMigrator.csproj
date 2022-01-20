@@ -5,7 +5,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
-    <UserSecretsId>a671e5cb-9197-4713-af3a-d9dfdeb4e1ca</UserSecretsId>
+    <UserSecretsId>EasyAbp.AbpModuleHub-a671e5cb-9197-4713-af3a-d9dfdeb4e1ca</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
