@@ -20,11 +20,13 @@ steps:
   inputs:
     script: |
       dotnet user-secrets set "ConnectionStrings:Default" "$(ConnectionStrings)"
+    workingDirectory: 'src/EasyAbp.AbpModuleHub.Web'
 
 - task: CmdLine@2
   inputs:
     script: |
       dotnet user-secrets set "App:SelfUrl" "$(SelfUrl)"
+    workingDirectory: 'src/EasyAbp.AbpModuleHub.Web'
 
 # - task: CmdLine@2
 #   inputs:
