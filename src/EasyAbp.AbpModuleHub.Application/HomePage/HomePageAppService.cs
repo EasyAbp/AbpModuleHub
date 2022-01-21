@@ -29,7 +29,7 @@ namespace EasyAbp.AbpModuleHub.HomePage
             var modulesList = await AsyncExecuter.ToListAsync(modules);
 
             return new PagedResultDto<SearchModuleResultDto>(totalCount,
-                ObjectMapper.Map<List<ModuleProduct>, List<SearchModuleResultDto>>(modulesList));
+                ObjectMapper.Map<List<Module>, List<SearchModuleResultDto>>(modulesList));
         }
     }
 }

@@ -12,8 +12,10 @@ namespace EasyAbp.AbpModuleHub.ModuleManagement.Dtos
 
         public string PayMethod { get; set; }
 
-        public double Price { get; set; }
+        public decimal Price { get; set; }
 
         public Guid? ModuleTypeId { get; set; }
+        
+        public Guid AuthorId { get; set; }
     }
 }

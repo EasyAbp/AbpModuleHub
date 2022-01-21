@@ -20,7 +20,7 @@ namespace EasyAbp.AbpModuleHub.Debugger
                 var createModuleDto = new Faker<CreateModuleDto>()
                     .RuleFor(r => r.Name, r =>r.Commerce.ProductName())
                     .RuleFor(r => r.CoverUrl, r => r.Internet.Url())
-                    .RuleFor(r => r.Price, r => r.System.Random.Double())
+                    .RuleFor(r => r.Price, r => r.System.Random.Decimal())
                     .RuleFor(r => r.PayMethod, r => "10")
                     .RuleFor(r => r.Description, r => r.Commerce.ProductName())
                     .Generate();

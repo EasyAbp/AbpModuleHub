@@ -27,196 +27,30 @@
     <section class="py-5">
         <div class="container px-4 px-lg-5 mt-5">
             <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-center">
-                <div class="col mb-5">
-                    <div class="card h-100">
-                        <!-- Product image-->
-                        <img class="card-img-top" src="/images/module-default.jpg" alt="..." />
-                        <!-- Product details-->
-                        <div class="card-body p-4">
-                            <div class="text-center">
-                                <!-- Product name-->
-                                <h5 class="fw-bolder">Support Center</h5>
-                                <p class="text-secondary"><small><i class="fa fa-user-circle" aria-hidden="true"></i> Duotai</small></p>
-                                <p class="text-secondary"><small>An ABP customer support center application module.</small></p>
-                                <!-- Product price-->
-                                $69.00
+                @foreach (var module in Model.Modules)
+                {
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Product image-->
+                            <img class="card-img-top" src="/images/module-default.jpg" alt="..."/>
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">@module.Name</h5>
+                                    <p class="text-secondary"><small><i class="fa fa-user-circle" aria-hidden="true"></i> @module.Author.Name</small></p>
+                                    <p class="text-secondary"><small>@module.Description</small></p>
+                                    <!-- Product price-->
+                                    $69.00
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" asp-page="/Item" asp-all-route-data="@(new Dictionary<string, string> { { "id", module.Id.ToString() } })">@L["Install"]</a></div>
                             </div>
                         </div>
-                        <!-- Product actions-->
-                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" asp-page="/Item" asp-all-route-data="@(new Dictionary<string, string> {{"id", "EA3B4B30-D843-499E-AE8F-29713D408877"}})">Install</a></div>
-                        </div>
                     </div>
-                </div>
-                <div class="col mb-5">
-                    <div class="card h-100">
-                        <!-- Product image-->
-                        <img class="card-img-top" src="/images/module-default.jpg" alt="..." />
-                        <!-- Product details-->
-                        <div class="card-body p-4">
-                            <div class="text-center">
-                                <!-- Product name-->
-                                <h5 class="fw-bolder">Smart Export</h5>
-                                <p class="text-secondary"><small><i class="fa fa-user-circle" aria-hidden="true"></i> Duotai</small></p>
-                                <p class="text-secondary"><small>An ABP general data export application module that supports the online design of export schemes.</small></p>
-                                <!-- Product price-->
-                                <span class="text-muted text-decoration-line-through">$199.00</span>
-                                $99.00
-                            </div>
-                        </div>
-                        <!-- Product actions-->
-                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" asp-page="/Item" asp-all-route-data="@(new Dictionary<string, string> {{"id", "EA3B4B30-D843-499E-AE8F-29713D408877"}})">Install</a></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col mb-5">
-                    <div class="card h-100">
-                        <!-- Product image-->
-                        <img class="card-img-top" src="/images/module-default.jpg" alt="..." />
-                        <!-- Product details-->
-                        <div class="card-body p-4">
-                            <div class="text-center">
-                                <!-- Product name-->
-                                <h5 class="fw-bolder">EShop</h5>
-                                <p class="text-secondary"><small><i class="fa fa-user-circle" aria-hidden="true"></i> EasyAbp</small></p>
-                                <p class="text-secondary"><small>An abp application module group that provides basic e-shop service.</small></p>
-                                <!-- Product price-->
-                                $0.00
-                            </div>
-                        </div>
-                        <!-- Product actions-->
-                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" asp-page="/Item" asp-all-route-data="@(new Dictionary<string, string> {{"id", "EA3B4B30-D843-499E-AE8F-29713D408877"}})">Install</a></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col mb-5">
-                    <div class="card h-100">
-                        <!-- Product image-->
-                        <img class="card-img-top" src="/images/module-default.jpg" alt="..." />
-                        <!-- Product details-->
-                        <div class="card-body p-4">
-                            <div class="text-center">
-                                <!-- Product name-->
-                                <h5 class="fw-bolder">Forum</h5>
-                                <p class="text-secondary"><small><i class="fa fa-user-circle" aria-hidden="true"></i> EasyAbp</small></p>
-                                <p class="text-secondary"><small>An abp forum application module.</small></p>
-                                <!-- Product price-->
-                                $0.00
-                            </div>
-                        </div>
-                        <!-- Product actions-->
-                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" asp-page="/Item" asp-all-route-data="@(new Dictionary<string, string> {{"id", "EA3B4B30-D843-499E-AE8F-29713D408877"}})">Install</a></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col mb-5">
-                    <div class="card h-100">
-                        <!-- Product image-->
-                        <img class="card-img-top" src="/images/module-default.jpg" alt="..." />
-                        <!-- Product details-->
-                        <div class="card-body p-4">
-                            <div class="text-center">
-                                <!-- Product name-->
-                                <h5 class="fw-bolder">File Management</h5>
-                                <p class="text-secondary"><small><i class="fa fa-user-circle" aria-hidden="true"></i> EasyAbp</small></p>
-                                <p class="text-secondary"><small>An abp application module that allows users to upload and manage their own files based on the ABP BLOB storing.</small></p>
-                                <!-- Product price-->
-                                $0.00
-                            </div>
-                        </div>
-                        <!-- Product actions-->
-                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" asp-page="/Item" asp-all-route-data="@(new Dictionary<string, string> {{"id", "EA3B4B30-D843-499E-AE8F-29713D408877"}})">Install</a></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col mb-5">
-                    <div class="card h-100">
-                        <!-- Product image-->
-                        <img class="card-img-top" src="/images/module-default.jpg" alt="..." />
-                        <!-- Product details-->
-                        <div class="card-body p-4">
-                            <div class="text-center">
-                                <!-- Product name-->
-                                <h5 class="fw-bolder">Notification Service</h5>
-                                <p class="text-secondary"><small><i class="fa fa-user-circle" aria-hidden="true"></i> EasyAbp</small></p>
-                                <p class="text-secondary"><small>An integrated user notification service Abp module, supporting email, SMS, PM, and more other methods.</small></p>
-                                <!-- Product price-->
-                                $0.00
-                            </div>
-                        </div>
-                        <!-- Product actions-->
-                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" asp-page="/Item" asp-all-route-data="@(new Dictionary<string, string> {{"id", "EA3B4B30-D843-499E-AE8F-29713D408877"}})">Install</a></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col mb-5">
-                    <div class="card h-100">
-                        <!-- Product image-->
-                        <img class="card-img-top" src="/images/module-default.jpg" alt="..." />
-                        <!-- Product details-->
-                        <div class="card-body p-4">
-                            <div class="text-center">
-                                <!-- Product name-->
-                                <h5 class="fw-bolder">Verification Code</h5>
-                                <p class="text-secondary"><small><i class="fa fa-user-circle" aria-hidden="true"></i> EasyAbp</small></p>
-                                <p class="text-secondary"><small>An ABP module to generate and verify verification codes.</small></p>
-                                <!-- Product price-->
-                                $0.00
-                            </div>
-                        </div>
-                        <!-- Product actions-->
-                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" asp-page="/Item" asp-all-route-data="@(new Dictionary<string, string> {{"id", "EA3B4B30-D843-499E-AE8F-29713D408877"}})">Install</a></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col mb-5">
-                    <div class="card h-100">
-                        <!-- Product image-->
-                        <img class="card-img-top" src="/images/module-default.jpg" alt="..." />
-                        <!-- Product details-->
-                        <div class="card-body p-4">
-                            <div class="text-center">
-                                <!-- Product name-->
-                                <h5 class="fw-bolder">GraphQL</h5>
-                                <p class="text-secondary"><small><i class="fa fa-user-circle" aria-hidden="true"></i> EasyAbp</small></p>
-                                <p class="text-secondary"><small>An ABP module that allows using application services by GraphQL. It also accepted custom schemes and types you defined.</small></p>
-                                <!-- Product price-->
-                                $0.00
-                            </div>
-                        </div>
-                        <!-- Product actions-->
-                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" asp-page="/Item" asp-all-route-data="@(new Dictionary<string, string> {{"id", "EA3B4B30-D843-499E-AE8F-29713D408877"}})">Install</a></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col mb-5">
-                    <div class="card h-100">
-                        <!-- Product image-->
-                        <img class="card-img-top" src="/images/module-default.jpg" alt="..." />
-                        <!-- Product details-->
-                        <div class="card-body p-4">
-                            <div class="text-center">
-                                <!-- Product name-->
-                                <h5 class="fw-bolder">Dynamic Menu</h5>
-                                <p class="text-secondary"><small><i class="fa fa-user-circle" aria-hidden="true"></i> EasyAbp</small></p>
-                                <p class="text-secondary"><small>An abp module that dynamically creates menu items for ABP UI projects in runtime.</small></p>
-                                <!-- Product price-->
-                                $0.00
-                            </div>
-                        </div>
-                        <!-- Product actions-->
-                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" asp-page="/Item" asp-all-route-data="@(new Dictionary<string, string> {{"id", "EA3B4B30-D843-499E-AE8F-29713D408877"}})">Install</a></div>
-                        </div>
-                    </div>
-                </div>
+                }
             </div>
         </div>
     </section>
