@@ -14,8 +14,7 @@ namespace EasyAbp.AbpModuleHub.Modules
     {
         private readonly IProductManager _productManager;
         private readonly ICategoryManager _categoryManager;
-
-        private readonly ICurrentUser _currentUser;
+        private readonly IAttributeOptionIdsSerializer _attributeOptionIdsSerializer;
 
         private readonly IStoreRepository _storeRepository;
         private readonly ICategoryRepository _categoryRepository;
@@ -26,9 +25,10 @@ namespace EasyAbp.AbpModuleHub.Modules
         private const string ModuleCategoryDisplayName = "模块";
         private const string DefaultProductGroupName = "Default";
 
-        public ModuleManager(IProductManager productManager,
+        public ModuleManager(
+            IProductManager productManager,
             ICategoryManager categoryManager,
-            ICurrentUser currentUser,
+            IAttributeOptionIdsSerializer attributeOptionIdsSerializer,
             IStoreRepository storeRepository,
             ICategoryRepository categoryRepository,
             IModuleRepository moduleRepository,
@@ -36,14 +36,14 @@ namespace EasyAbp.AbpModuleHub.Modules
         {
             _productManager = productManager;
             _categoryManager = categoryManager;
-            _currentUser = currentUser;
+            _attributeOptionIdsSerializer = attributeOptionIdsSerializer;
             _storeRepository = storeRepository;
             _categoryRepository = categoryRepository;
             _moduleRepository = moduleRepository;
             _productDetailRepository = productDetailRepository;
         }
 
-        public async Task<ModuleProduct> CreateModuleAsync(ModuleProduct module)
+        public async Task<Module> CreateModuleAsync(CreateModuleInfo info)
         {
             var storeId = await EnsureStoreExistAsync();
             var categoryId = await EnsureProductCategoryExistAsync();
@@ -51,28 +51,41 @@ namespace EasyAbp.AbpModuleHub.Modules
             var productDetail = await _productDetailRepository.InsertAsync(new ProductDetail(GuidGenerator.Create(),
                 CurrentTenant.Id,
                 storeId,
-                module.Description));
+                info.Description));
 
             var productId = GuidGenerator.Create();
-            await _productManager.CreateAsync(new Product(productId,
-                    CurrentTenant.Id,
-                    storeId,
-                    DefaultProductGroupName,
-                    productDetail.Id,
-                    $"{ModuleCategoryUniqueName}.{productId}",
-                    module.Name,
-                    InventoryStrategy.NoNeed,
-                    false,
-                    true,
-                    false,
-                    null,
-                    null,
-                    0
-                ),
-                new[] { categoryId });
+            var product = new Product(productId,
+                CurrentTenant.Id,
+                storeId,
+                DefaultProductGroupName,
+                productDetail.Id,
+                $"{ModuleCategoryUniqueName}.{productId}",
+                info.Name,
+                InventoryStrategy.NoNeed,
+                false,
+                true,
+                false,
+                null,
+                null,
+                0
+            );
+            
+            var attribute = new ProductAttribute(GuidGenerator.Create(), "标准", null);
+            
+            var attributeOption = new ProductAttributeOption(GuidGenerator.Create(), "标准", null);
 
-            module.BindProduct(productId);
-            return await _moduleRepository.InsertAsync(module);
+            attribute.ProductAttributeOptions.Add(attributeOption);
+            
+            product.ProductAttributes.Add(attribute);
+
+            product.ProductSkus.Add(new ProductSku(GuidGenerator.Create(),
+                await _attributeOptionIdsSerializer.SerializeAsync(new[] { attributeOption.Id }), "Annual",
+                AbpModuleHubConsts.Currency, null, 0, 1, 10, null, null, null));
+            
+            await _productManager.CreateAsync(product, new[] { categoryId });
+
+            return await _moduleRepository.InsertAsync(new Module(GuidGenerator.Create(), CurrentTenant.Id, info.Name,
+                info.Description, info.PayMethod, info.Price, productId, info.ModuleTypeId, info.AuthorId), true);
         }
 
         private async Task<Guid> EnsureStoreExistAsync()
@@ -108,7 +121,7 @@ namespace EasyAbp.AbpModuleHub.Modules
             return category.Id;
         }
 
-        public async Task DeleteModuleAsync(ModuleProduct module)
+        public async Task DeleteModuleAsync(Module module)
         {
             await _productManager.DeleteAsync(module.ProductId);
             await _moduleRepository.DeleteAsync(module.Id);

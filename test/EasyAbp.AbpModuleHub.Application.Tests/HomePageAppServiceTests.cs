@@ -42,17 +42,26 @@ public class HomePageAppServiceTests : AbpModuleHubApplicationTestBase
 
         await WithUnitOfWorkAsync(async () =>
         {
-            await domainService.CreateModuleAsync(new ModuleProduct(guidGenerator.Create(),
-                null,
+            // Todo: where is the Author repo?
+            var authorId = guidGenerator.Create();
+            
+            await domainService.CreateModuleAsync(new CreateModuleInfo(
                 "Free Module - A",
                 "Free Module - A Description",
-                "30"));
-
-            await domainService.CreateModuleAsync(new ModuleProduct(guidGenerator.Create(),
+                "30",
+                0,
                 null,
+                null,
+                authorId));
+
+            await domainService.CreateModuleAsync(new CreateModuleInfo(
                 "Free Module - B",
                 "Free Module - B Description",
-                "20"));
+                "20",
+                0,
+                null,
+                null,
+                authorId));
         });
     }
 }

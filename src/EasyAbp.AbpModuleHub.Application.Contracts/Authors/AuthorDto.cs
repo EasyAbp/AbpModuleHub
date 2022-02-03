@@ -1,9 +1,9 @@
 using System;
-using Volo.Abp.Domain.Entities.Auditing;
+using Volo.Abp.Application.Dtos;
 
-namespace EasyAbp.AbpModuleHub.EasyAbp
+namespace EasyAbp.AbpModuleHub.Authors
 {
-    public class Author : FullAuditedAggregateRoot<Guid>
+    public class AuthorDto : EntityDto<Guid>
     {
         public string Name { get; set; }
 

@@ -1,4 +1,5 @@
-﻿using EasyAbp.AbpModuleHub.Modules;
+﻿using EasyAbp.AbpModuleHub.Authors;
+using EasyAbp.AbpModuleHub.Modules;
 using EasyAbp.EShop.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
@@ -56,7 +57,7 @@ namespace EasyAbp.AbpModuleHub.EntityFrameworkCore
         #endregion
 
         // Hub Entities
-        public DbSet<ModuleProduct> ModuleProducts { get; set; }
+        public DbSet<Module> ModuleProducts { get; set; }
         public DbSet<ModuleType> ModuleTypes { get; set; }
 
         public AbpModuleHubDbContext(DbContextOptions<AbpModuleHubDbContext> options)
@@ -82,7 +83,7 @@ namespace EasyAbp.AbpModuleHub.EntityFrameworkCore
 
             /* Configure your own tables/entities inside here */
 
-            builder.Entity<ModuleProduct>(b =>
+            builder.Entity<Module>(b =>
             {
                 b.ToTable(AbpModuleHubConsts.DbTablePrefix + "Modules", AbpModuleHubConsts.DbSchema);
                 b.ConfigureByConvention();
@@ -91,7 +92,10 @@ namespace EasyAbp.AbpModuleHub.EntityFrameworkCore
                 b.Property(e => e.Description).HasMaxLength(2048).IsRequired();
                 b.Property(e => e.CoverUrl).HasMaxLength(256);
                 b.Property(e => e.PayMethod).HasMaxLength(64).IsRequired();
+                b.Property(e => e.OriginalPrice).HasColumnType("decimal(20,8)");
+                b.Property(e => e.Price).HasColumnType("decimal(20,8)");
                 b.Property(e => e.ProductId).IsRequired();
+                b.Property(e => e.AuthorId).IsRequired();
             });
 
             builder.Entity<ModuleType>(b =>
@@ -101,6 +105,16 @@ namespace EasyAbp.AbpModuleHub.EntityFrameworkCore
 
                 b.Property(e => e.Name).HasMaxLength(64).IsRequired();
                 b.Property(e => e.Description).HasMaxLength(1024);
+            });
+
+            builder.Entity<Author>(b =>
+            {
+                b.ToTable(AbpModuleHubConsts.DbTablePrefix + "Authors", AbpModuleHubConsts.DbSchema);
+                b.ConfigureByConvention();
+
+                b.Property(e => e.Name).HasMaxLength(64).IsRequired();
+                b.Property(e => e.Email).HasMaxLength(64).IsRequired();
+                b.Property(e => e.Avatar).HasMaxLength(256).IsRequired();
             });
         }
     }

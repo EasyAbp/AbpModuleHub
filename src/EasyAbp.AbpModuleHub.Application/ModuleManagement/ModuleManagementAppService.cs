@@ -25,17 +25,16 @@ namespace EasyAbp.AbpModuleHub.ModuleManagement
         [Authorize(AbpModuleHubPermissions.ModuleManagement.Create)]
         public async Task<ModuleDto> CreateModuleAsync(CreateModuleDto input)
         {
-            var newModule = await _moduleManager.CreateModuleAsync(new ModuleProduct(GuidGenerator.Create(),
-                CurrentTenant.Id,
+            var newModule = await _moduleManager.CreateModuleAsync(new CreateModuleInfo(
                 input.Name,
                 input.Description,
-                input.PayMethod)
-            {
-                ModuleTypeId = input.ModuleTypeId,
-                CoverUrl = input.CoverUrl
-            });
+                input.PayMethod,
+                input.Price,
+                input.ModuleTypeId,
+                input.CoverUrl,
+                input.AuthorId));
 
-            return ObjectMapper.Map<ModuleProduct, ModuleDto>(newModule);
+            return ObjectMapper.Map<Module, ModuleDto>(newModule);
         }
 
         [Authorize(AbpModuleHubPermissions.ModuleManagement.Update)]
@@ -63,16 +62,16 @@ namespace EasyAbp.AbpModuleHub.ModuleManagement
 
         public async Task<ModuleDto> GetModuleByIdAsync(Guid id)
         {
-            return ObjectMapper.Map<ModuleProduct, ModuleDto>(await _moduleRepository.GetAsync(id));
+            return ObjectMapper.Map<Module, ModuleDto>(await _moduleRepository.GetAsync(id));
         }
 
-        public async Task<PagedResultDto<ModuleListDto>> GetListAsync(PagedResultRequestDto input)
+        public async Task<PagedResultDto<ModuleInListDto>> GetListAsync(PagedResultRequestDto input)
         {
             var totalCount = await _moduleRepository.GetCountAsync();
-            var modules = await _moduleRepository.GetPagedListAsync(input.SkipCount, input.MaxResultCount, "CreationTime desc");
+            var modules = await _moduleRepository.GetPagedListAsync(input.SkipCount, input.MaxResultCount, "CreationTime desc", true);
 
-            return new PagedResultDto<ModuleListDto>(totalCount,
-                ObjectMapper.Map<List<ModuleProduct>, List<ModuleListDto>>(modules));
+            return new PagedResultDto<ModuleInListDto>(totalCount,
+                ObjectMapper.Map<List<Module>, List<ModuleInListDto>>(modules));
         }
     }
 }

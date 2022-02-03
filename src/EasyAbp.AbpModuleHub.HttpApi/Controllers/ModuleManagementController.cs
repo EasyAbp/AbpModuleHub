@@ -23,6 +23,6 @@ namespace EasyAbp.AbpModuleHub.Controllers
 
         public Task<ModuleDto> GetModuleByIdAsync(Guid id) => _moduleManagementAppService.GetModuleByIdAsync(id);
 
-        public Task<PagedResultDto<ModuleListDto>> GetListAsync(PagedResultRequestDto input) => _moduleManagementAppService.GetListAsync(input);
+        public Task<PagedResultDto<ModuleInListDto>> GetListAsync(PagedResultRequestDto input) => _moduleManagementAppService.GetListAsync(input);
     }
 }
