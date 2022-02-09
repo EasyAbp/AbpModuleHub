@@ -27,7 +27,7 @@ namespace EasyAbp.AbpModuleHub
         {
             context.Services.PreConfigure<IMvcBuilder>(builder =>
             {
-                builder.PartManager.ApplicationParts.Add(new AssemblyPart(typeof(AbpModuleHubWebModule).Assembly));
+                builder.PartManager.ApplicationParts.Add(new CompiledRazorAssemblyPart(typeof(AbpModuleHubWebModule).Assembly));
             });
         }
 
