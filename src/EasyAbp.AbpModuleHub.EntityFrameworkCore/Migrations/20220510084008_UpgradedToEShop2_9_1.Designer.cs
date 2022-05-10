@@ -3,6 +3,7 @@ using System;
 using EasyAbp.AbpModuleHub.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Volo.Abp.EntityFrameworkCore;
@@ -12,9 +13,10 @@ using Volo.Abp.EntityFrameworkCore;
 namespace EasyAbp.AbpModuleHub.Migrations
 {
     [DbContext(typeof(AbpModuleHubDbContext))]
-    partial class AbpModuleHubDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220510084008_UpgradedToEShop2_9_1")]
+    partial class UpgradedToEShop2_9_1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
