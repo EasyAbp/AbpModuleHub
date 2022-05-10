@@ -12,7 +12,7 @@ namespace EasyAbp.AbpModuleHub.Web.Pages
 {
     public class ItemModel : AbpModuleHubPageModel
     {
-        private readonly IProductAppService _productAppService;
+        private readonly IProductViewAppService _productViewAppService;
         private readonly IModuleManagementAppService _moduleManagementAppService;
 
         [BindProperty(SupportsGet = true)]
@@ -20,15 +20,15 @@ namespace EasyAbp.AbpModuleHub.Web.Pages
         
         public ModuleDto Module { get; set; }
         
-        public ProductDto Product { get; set; }
+        public ProductViewDto Product { get; set; }
 
         public IReadOnlyList<ModuleInListDto> RelatedModules { get; set; } = new List<ModuleInListDto>();
 
         public ItemModel(
-            IProductAppService productAppService,
+            IProductViewAppService productViewAppService,
             IModuleManagementAppService moduleManagementAppService)
         {
-            _productAppService = productAppService;
+            _productViewAppService = productViewAppService;
             _moduleManagementAppService = moduleManagementAppService;
         }
         
@@ -37,7 +37,7 @@ namespace EasyAbp.AbpModuleHub.Web.Pages
             try
             {
                 Module = await _moduleManagementAppService.GetModuleByIdAsync(Id);
-                Product = await _productAppService.GetAsync(Module.ProductId);
+                Product = await _productViewAppService.GetAsync(Module.ProductId);
             }
             catch
             {
