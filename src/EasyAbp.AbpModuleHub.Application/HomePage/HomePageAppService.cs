@@ -1,25 +1,25 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using EasyAbp.AbpModuleHub.HomePage.Dtos;
-using EasyAbp.AbpModuleHub.Modules;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using System.Linq;
+using EasyAbp.AbpModuleHub.HubModules;
 
 namespace EasyAbp.AbpModuleHub.HomePage
 {
     public class HomePageAppService : ApplicationService, IHomePageAppService
     {
-        private readonly IModuleRepository _moduleRepository;
+        private readonly IHubModuleRepository _hubModuleRepository;
 
-        public HomePageAppService(IModuleRepository moduleRepository)
+        public HomePageAppService(IHubModuleRepository hubModuleRepository)
         {
-            _moduleRepository = moduleRepository;
+            _hubModuleRepository = hubModuleRepository;
         }
 
         public async Task<PagedResultDto<SearchModuleResultDto>> SearchModuleByNameAsync(SearchModuleByNameRequestDto input)
         {
-            var queryable = await _moduleRepository.GetQueryableAsync();
+            var queryable = await _hubModuleRepository.GetQueryableAsync();
 
             var modules = queryable
                 .Where(m => m.Name.Contains(input.SearchKey))
@@ -29,7 +29,7 @@ namespace EasyAbp.AbpModuleHub.HomePage
             var modulesList = await AsyncExecuter.ToListAsync(modules);
 
             return new PagedResultDto<SearchModuleResultDto>(totalCount,
-                ObjectMapper.Map<List<Module>, List<SearchModuleResultDto>>(modulesList));
+                ObjectMapper.Map<List<HubModule>, List<SearchModuleResultDto>>(modulesList));
         }
     }
 }

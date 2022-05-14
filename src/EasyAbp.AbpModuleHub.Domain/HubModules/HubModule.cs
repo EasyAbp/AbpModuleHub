@@ -1,13 +1,12 @@
 ﻿using System;
 using EasyAbp.AbpModuleHub.Authors;
-using EasyAbp.EShop.Products.Products;
 using JetBrains.Annotations;
 using Volo.Abp.Domain.Entities.Auditing;
 using Volo.Abp.MultiTenancy;
 
-namespace EasyAbp.AbpModuleHub.Modules
+namespace EasyAbp.AbpModuleHub.HubModules
 {
-    public class Module : FullAuditedAggregateRoot<Guid>, IMultiTenant
+    public class HubModule : FullAuditedAggregateRoot<Guid>, IMultiTenant
     {
         public virtual Guid? TenantId { get; protected set; }
 
@@ -28,17 +27,17 @@ namespace EasyAbp.AbpModuleHub.Modules
         public virtual Guid? ModuleTypeId { get; set; }
         
         [CanBeNull]
-        public virtual ModuleType ModuleType { get; set; }
+        public virtual HubModuleType HubModuleType { get; set; }
         
         public virtual Guid AuthorId { get; protected set; }
 
         public virtual Author Author { get; protected set; }
 
-        protected Module()
+        protected HubModule()
         {
         }
 
-        public Module(
+        public HubModule(
             Guid id,
             Guid? tenantId,
             string name,

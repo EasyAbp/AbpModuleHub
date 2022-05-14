@@ -1,4 +1,5 @@
 ﻿using EasyAbp.AbpModuleHub.Authors;
+using EasyAbp.AbpModuleHub.HubModules;
 using EasyAbp.AbpModuleHub.Modules;
 using EasyAbp.EShop.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -57,8 +58,8 @@ namespace EasyAbp.AbpModuleHub.EntityFrameworkCore
         #endregion
 
         // Hub Entities
-        public DbSet<Module> ModuleProducts { get; set; }
-        public DbSet<ModuleType> ModuleTypes { get; set; }
+        public DbSet<HubModule> ModuleProducts { get; set; }
+        public DbSet<HubModuleType> ModuleTypes { get; set; }
 
         public AbpModuleHubDbContext(DbContextOptions<AbpModuleHubDbContext> options)
             : base(options)
@@ -83,7 +84,7 @@ namespace EasyAbp.AbpModuleHub.EntityFrameworkCore
 
             /* Configure your own tables/entities inside here */
 
-            builder.Entity<Module>(b =>
+            builder.Entity<HubModule>(b =>
             {
                 b.ToTable(AbpModuleHubConsts.DbTablePrefix + "Modules", AbpModuleHubConsts.DbSchema);
                 b.ConfigureByConvention();
@@ -98,7 +99,7 @@ namespace EasyAbp.AbpModuleHub.EntityFrameworkCore
                 b.Property(e => e.AuthorId).IsRequired();
             });
 
-            builder.Entity<ModuleType>(b =>
+            builder.Entity<HubModuleType>(b =>
             {
                 b.ToTable(AbpModuleHubConsts.DbTablePrefix + "ModuleTypes", AbpModuleHubConsts.DbSchema);
                 b.ConfigureByConvention();

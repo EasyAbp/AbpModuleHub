@@ -6,11 +6,10 @@ using EasyAbp.EShop.Products.Products;
 using EasyAbp.EShop.Stores.Stores;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Domain.Services;
-using Volo.Abp.Users;
 
-namespace EasyAbp.AbpModuleHub.Modules
+namespace EasyAbp.AbpModuleHub.HubModules
 {
-    public class ModuleManager : DomainService
+    public class HubModuleManager : DomainService
     {
         private readonly IProductManager _productManager;
         private readonly ICategoryManager _categoryManager;
@@ -18,20 +17,20 @@ namespace EasyAbp.AbpModuleHub.Modules
 
         private readonly IStoreRepository _storeRepository;
         private readonly ICategoryRepository _categoryRepository;
-        private readonly IModuleRepository _moduleRepository;
+        private readonly IHubModuleRepository _hubModuleRepository;
         private readonly IProductDetailRepository _productDetailRepository;
 
         private const string ModuleCategoryUniqueName = "AbpModuleHub.Module";
         private const string ModuleCategoryDisplayName = "模块";
         private const string DefaultProductGroupName = "Default";
 
-        public ModuleManager(
+        public HubModuleManager(
             IProductManager productManager,
             ICategoryManager categoryManager,
             IAttributeOptionIdsSerializer attributeOptionIdsSerializer,
             IStoreRepository storeRepository,
             ICategoryRepository categoryRepository,
-            IModuleRepository moduleRepository,
+            IHubModuleRepository hubModuleRepository,
             IProductDetailRepository productDetailRepository)
         {
             _productManager = productManager;
@@ -39,11 +38,11 @@ namespace EasyAbp.AbpModuleHub.Modules
             _attributeOptionIdsSerializer = attributeOptionIdsSerializer;
             _storeRepository = storeRepository;
             _categoryRepository = categoryRepository;
-            _moduleRepository = moduleRepository;
+            _hubModuleRepository = hubModuleRepository;
             _productDetailRepository = productDetailRepository;
         }
 
-        public async Task<Module> CreateModuleAsync(CreateModuleInfo info)
+        public async Task<HubModule> CreateModuleAsync(CreateModuleInfo info)
         {
             var storeId = await EnsureStoreExistAsync();
             var categoryId = await EnsureProductCategoryExistAsync();
@@ -84,7 +83,7 @@ namespace EasyAbp.AbpModuleHub.Modules
             
             await _productManager.CreateAsync(product, new[] { categoryId });
 
-            return await _moduleRepository.InsertAsync(new Module(GuidGenerator.Create(), CurrentTenant.Id, info.Name,
+            return await _hubModuleRepository.InsertAsync(new HubModule(GuidGenerator.Create(), CurrentTenant.Id, info.Name,
                 info.Description, info.PayMethod, info.Price, productId, info.ModuleTypeId, info.AuthorId), true);
         }
 
@@ -121,10 +120,10 @@ namespace EasyAbp.AbpModuleHub.Modules
             return category.Id;
         }
 
-        public async Task DeleteModuleAsync(Module module)
+        public async Task DeleteModuleAsync(HubModule hubModule)
         {
-            await _productManager.DeleteAsync(module.ProductId);
-            await _moduleRepository.DeleteAsync(module.Id);
+            await _productManager.DeleteAsync(hubModule.ProductId);
+            await _hubModuleRepository.DeleteAsync(hubModule.Id);
         }
     }
 }

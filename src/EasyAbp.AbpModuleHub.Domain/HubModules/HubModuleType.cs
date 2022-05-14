@@ -2,9 +2,9 @@
 using Volo.Abp.Domain.Entities;
 using Volo.Abp.MultiTenancy;
 
-namespace EasyAbp.AbpModuleHub.Modules
+namespace EasyAbp.AbpModuleHub.HubModules
 {
-    public class ModuleType : AggregateRoot<Guid>, IMultiTenant
+    public class HubModuleType : AggregateRoot<Guid>, IMultiTenant
     {
         public Guid? TenantId { get; }
 
@@ -12,11 +12,11 @@ namespace EasyAbp.AbpModuleHub.Modules
 
         public string Description { get; protected set; }
 
-        protected ModuleType()
+        protected HubModuleType()
         {
         }
 
-        public ModuleType(Guid id,
+        public HubModuleType(Guid id,
             string name,
             string description,
             Guid? tenantId)

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EasyAbp.AbpModuleHub.Modules;
+namespace EasyAbp.AbpModuleHub.HubModules;
 
 public class CreateModuleInfo
 {

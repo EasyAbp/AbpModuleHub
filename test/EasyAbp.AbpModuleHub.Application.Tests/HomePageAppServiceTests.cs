@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using EasyAbp.AbpModuleHub.HomePage;
 using EasyAbp.AbpModuleHub.HomePage.Dtos;
+using EasyAbp.AbpModuleHub.HubModules;
 using EasyAbp.AbpModuleHub.Modules;
 using Shouldly;
 using Volo.Abp.Guids;
@@ -37,7 +38,7 @@ public class HomePageAppServiceTests : AbpModuleHubApplicationTestBase
 
     private async Task InitializeDefaultModules()
     {
-        var domainService = GetRequiredService<ModuleManager>();
+        var domainService = GetRequiredService<HubModuleManager>();
         var guidGenerator = GetRequiredService<IGuidGenerator>();
 
         await WithUnitOfWorkAsync(async () =>
