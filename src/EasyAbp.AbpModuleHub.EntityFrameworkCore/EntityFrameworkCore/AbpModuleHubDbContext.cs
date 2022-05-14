@@ -86,7 +86,7 @@ namespace EasyAbp.AbpModuleHub.EntityFrameworkCore
 
             builder.Entity<HubModule>(b =>
             {
-                b.ToTable(AbpModuleHubConsts.DbTablePrefix + "Modules", AbpModuleHubConsts.DbSchema);
+                b.ToTable(AbpModuleHubConsts.DbTablePrefix + "HubModules", AbpModuleHubConsts.DbSchema);
                 b.ConfigureByConvention();
 
                 b.Property(e => e.Name).HasMaxLength(512).IsRequired();
@@ -101,7 +101,7 @@ namespace EasyAbp.AbpModuleHub.EntityFrameworkCore
 
             builder.Entity<HubModuleType>(b =>
             {
-                b.ToTable(AbpModuleHubConsts.DbTablePrefix + "ModuleTypes", AbpModuleHubConsts.DbSchema);
+                b.ToTable(AbpModuleHubConsts.DbTablePrefix + "HubModuleTypes", AbpModuleHubConsts.DbSchema);
                 b.ConfigureByConvention();
 
                 b.Property(e => e.Name).HasMaxLength(64).IsRequired();

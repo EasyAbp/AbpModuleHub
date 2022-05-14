@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
@@ -11,6 +12,7 @@ namespace EasyAbp.AbpModuleHub.EntityFrameworkCore
     {
         public AbpModuleHubDbContext CreateDbContext(string[] args)
         {
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
             AbpModuleHubEfCoreEntityExtensionMappings.Configure();
 
             var configuration = BuildConfiguration();

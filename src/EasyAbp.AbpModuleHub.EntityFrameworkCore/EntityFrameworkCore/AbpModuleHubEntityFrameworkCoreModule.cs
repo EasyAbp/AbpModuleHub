@@ -1,4 +1,5 @@
-﻿using EasyAbp.EShop.EntityFrameworkCore;
+﻿using System;
+using EasyAbp.EShop.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
@@ -32,6 +33,8 @@ namespace EasyAbp.AbpModuleHub.EntityFrameworkCore
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)
         {
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
             AbpModuleHubEfCoreEntityExtensionMappings.Configure();
         }
 

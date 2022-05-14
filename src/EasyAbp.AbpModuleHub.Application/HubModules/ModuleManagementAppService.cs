@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using EasyAbp.AbpModuleHub.HubModules;
+using EasyAbp.AbpModuleHub.ModuleManagement;
 using EasyAbp.AbpModuleHub.ModuleManagement.Dtos;
 using EasyAbp.AbpModuleHub.Permissions;
 using Microsoft.AspNetCore.Authorization;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 
-namespace EasyAbp.AbpModuleHub.ModuleManagement
+namespace EasyAbp.AbpModuleHub.HubModules
 {
     public class ModuleManagementAppService : ApplicationService, IModuleManagementAppService
     {

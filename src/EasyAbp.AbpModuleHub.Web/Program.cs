@@ -11,6 +11,8 @@ namespace EasyAbp.AbpModuleHub.Web
     {
         public static int Main(string[] args)
         {
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+            
             Log.Logger = new LoggerConfiguration()
 #if DEBUG
                 .MinimumLevel.Debug()
