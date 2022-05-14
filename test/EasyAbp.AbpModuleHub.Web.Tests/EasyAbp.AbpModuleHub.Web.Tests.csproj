@@ -15,7 +15,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
-    <PackageReference Include="HtmlAgilityPack" Version="1.11.39" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.42" />
     <ProjectReference Include="..\EasyAbp.AbpModuleHub.Application.Tests\EasyAbp.AbpModuleHub.Application.Tests.csproj" />
     <ProjectReference Include="..\..\src\EasyAbp.AbpModuleHub.Web\EasyAbp.AbpModuleHub.Web.csproj" />
     <PackageReference Include="Volo.Abp.AspNetCore.TestBase" Version="$(AbpVersion)" />
