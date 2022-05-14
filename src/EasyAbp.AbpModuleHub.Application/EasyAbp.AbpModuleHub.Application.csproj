@@ -14,6 +14,10 @@
 
   <ItemGroup>
     <PackageReference Include="EasyAbp.EShop.Application" Version="$(EasyAbpEShopModuleVersion)" />
+    <PackageReference Include="EasyAbp.EShop.Orders.Application" Version="$(EasyAbpEShopModuleVersion)" />
+    <PackageReference Include="EasyAbp.EShop.Payments.Application" Version="$(EasyAbpEShopModuleVersion)" />
+    <PackageReference Include="EasyAbp.EShop.Products.Application" Version="$(EasyAbpEShopModuleVersion)" />
+    <PackageReference Include="EasyAbp.EShop.Stores.Application" Version="$(EasyAbpEShopModuleVersion)" />
     <PackageReference Include="Volo.Abp.Account.Application" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.Identity.Application" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.PermissionManagement.Application" Version="$(AbpVersion)" />

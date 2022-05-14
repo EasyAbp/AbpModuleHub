@@ -1,4 +1,4 @@
-﻿using EasyAbp.EShop;
+using EasyAbp.EShop;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.Account;
 using Volo.Abp.FeatureManagement;
@@ -7,6 +7,10 @@ using Volo.Abp.Modularity;
 using Volo.Abp.PermissionManagement;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.SettingManagement;
+using EasyAbp.EShop.Orders;
+using EasyAbp.EShop.Payments;
+using EasyAbp.EShop.Products;
+using EasyAbp.EShop.Stores;
 
 namespace EasyAbp.AbpModuleHub
 {
@@ -20,6 +24,10 @@ namespace EasyAbp.AbpModuleHub
         typeof(AbpSettingManagementHttpApiClientModule),
         typeof(EShopHttpApiClientModule)
     )]
+    [DependsOn(typeof(EShopOrdersHttpApiClientModule))]
+    [DependsOn(typeof(EShopPaymentsHttpApiClientModule))]
+    [DependsOn(typeof(EShopProductsHttpApiClientModule))]
+    [DependsOn(typeof(EShopStoresHttpApiClientModule))]
     public class AbpModuleHubHttpApiClientModule : AbpModule
     {
         public const string RemoteServiceName = "Default";

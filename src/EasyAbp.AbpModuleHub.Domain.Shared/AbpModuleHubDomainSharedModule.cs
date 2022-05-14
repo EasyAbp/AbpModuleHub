@@ -1,4 +1,4 @@
-﻿using EasyAbp.AbpModuleHub.Localization;
+using EasyAbp.AbpModuleHub.Localization;
 using EasyAbp.EShop;
 using Volo.Abp.AuditLogging;
 using Volo.Abp.BackgroundJobs;
@@ -13,6 +13,10 @@ using Volo.Abp.SettingManagement;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.Validation.Localization;
 using Volo.Abp.VirtualFileSystem;
+using EasyAbp.EShop.Orders;
+using EasyAbp.EShop.Payments;
+using EasyAbp.EShop.Products;
+using EasyAbp.EShop.Stores;
 
 namespace EasyAbp.AbpModuleHub
 {
@@ -27,6 +31,10 @@ namespace EasyAbp.AbpModuleHub
         typeof(AbpTenantManagementDomainSharedModule),
         typeof(EShopDomainSharedModule)
     )]
+    [DependsOn(typeof(EShopOrdersDomainSharedModule))]
+    [DependsOn(typeof(EShopPaymentsDomainSharedModule))]
+    [DependsOn(typeof(EShopProductsDomainSharedModule))]
+    [DependsOn(typeof(EShopStoresDomainSharedModule))]
     public class AbpModuleHubDomainSharedModule : AbpModule
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)

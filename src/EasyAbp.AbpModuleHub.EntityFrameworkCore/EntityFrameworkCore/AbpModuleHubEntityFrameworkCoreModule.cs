@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using EasyAbp.EShop.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp;
@@ -13,6 +13,10 @@ using Volo.Abp.Modularity;
 using Volo.Abp.PermissionManagement.EntityFrameworkCore;
 using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
+using EasyAbp.EShop.Orders.EntityFrameworkCore;
+using EasyAbp.EShop.Payments.EntityFrameworkCore;
+using EasyAbp.EShop.Products.EntityFrameworkCore;
+using EasyAbp.EShop.Stores.EntityFrameworkCore;
 
 namespace EasyAbp.AbpModuleHub.EntityFrameworkCore
 {
@@ -29,6 +33,10 @@ namespace EasyAbp.AbpModuleHub.EntityFrameworkCore
         typeof(AbpFeatureManagementEntityFrameworkCoreModule),
         typeof(EShopEntityFrameworkCoreModule)
     )]
+    [DependsOn(typeof(EShopOrdersEntityFrameworkCoreModule))]
+    [DependsOn(typeof(EShopPaymentsEntityFrameworkCoreModule))]
+    [DependsOn(typeof(EShopProductsEntityFrameworkCoreModule))]
+    [DependsOn(typeof(EShopStoresEntityFrameworkCoreModule))]
     public class AbpModuleHubEntityFrameworkCoreModule : AbpModule
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)

@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="EasyAbp.EShop.Orders.EntityFrameworkCore" Version="$(EasyAbpEShopModuleVersion)" />
+    <PackageReference Include="EasyAbp.EShop.Payments.EntityFrameworkCore" Version="$(EasyAbpEShopModuleVersion)" />
+    <PackageReference Include="EasyAbp.EShop.Products.EntityFrameworkCore" Version="$(EasyAbpEShopModuleVersion)" />
+    <PackageReference Include="EasyAbp.EShop.Stores.EntityFrameworkCore" Version="$(EasyAbpEShopModuleVersion)" />
     <ProjectReference Include="..\EasyAbp.AbpModuleHub.Domain\EasyAbp.AbpModuleHub.Domain.csproj" />
     <PackageReference Include="EasyAbp.EShop.EntityFrameworkCore" Version="$(EasyAbpEShopModuleVersion)" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.*">

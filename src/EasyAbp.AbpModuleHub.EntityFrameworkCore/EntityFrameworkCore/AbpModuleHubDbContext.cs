@@ -1,4 +1,4 @@
-﻿using EasyAbp.AbpModuleHub.Authors;
+using EasyAbp.AbpModuleHub.Authors;
 using EasyAbp.AbpModuleHub.HubModules;
 using EasyAbp.AbpModuleHub.Modules;
 using EasyAbp.EShop.EntityFrameworkCore;
@@ -16,6 +16,10 @@ using Volo.Abp.IdentityServer.EntityFrameworkCore;
 using Volo.Abp.PermissionManagement.EntityFrameworkCore;
 using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.TenantManagement;
+using EasyAbp.EShop.Orders.EntityFrameworkCore;
+using EasyAbp.EShop.Payments.EntityFrameworkCore;
+using EasyAbp.EShop.Products.EntityFrameworkCore;
+using EasyAbp.EShop.Stores.EntityFrameworkCore;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
 
 namespace EasyAbp.AbpModuleHub.EntityFrameworkCore
@@ -117,6 +121,10 @@ namespace EasyAbp.AbpModuleHub.EntityFrameworkCore
                 b.Property(e => e.Email).HasMaxLength(64).IsRequired();
                 b.Property(e => e.Avatar).HasMaxLength(256).IsRequired();
             });
+            builder.ConfigureEShopOrders();
+            builder.ConfigureEShopPayments();
+            builder.ConfigureEShopProducts();
+            builder.ConfigureEShopStores();
         }
     }
 }

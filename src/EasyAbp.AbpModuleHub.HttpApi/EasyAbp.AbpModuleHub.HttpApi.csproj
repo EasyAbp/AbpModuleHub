@@ -13,6 +13,10 @@
 
   <ItemGroup>
     <PackageReference Include="EasyAbp.EShop.HttpApi" Version="$(EasyAbpEShopModuleVersion)" />
+    <PackageReference Include="EasyAbp.EShop.Orders.HttpApi" Version="$(EasyAbpEShopModuleVersion)" />
+    <PackageReference Include="EasyAbp.EShop.Payments.HttpApi" Version="$(EasyAbpEShopModuleVersion)" />
+    <PackageReference Include="EasyAbp.EShop.Products.HttpApi" Version="$(EasyAbpEShopModuleVersion)" />
+    <PackageReference Include="EasyAbp.EShop.Stores.HttpApi" Version="$(EasyAbpEShopModuleVersion)" />
     <PackageReference Include="Volo.Abp.Account.HttpApi" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.Identity.HttpApi" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.PermissionManagement.HttpApi" Version="$(AbpVersion)" />

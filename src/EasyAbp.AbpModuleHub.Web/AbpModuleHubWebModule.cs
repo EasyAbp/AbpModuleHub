@@ -38,6 +38,7 @@ using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.UI;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.VirtualFileSystem;
+using EasyAbp.EShop.Orders.Web;
 
 namespace EasyAbp.AbpModuleHub.Web
 {
@@ -56,6 +57,7 @@ namespace EasyAbp.AbpModuleHub.Web
         typeof(AbpSwashbuckleModule),
         typeof(EShopWebModule)
     )]
+    [DependsOn(typeof(EShopOrdersWebModule))]
     public class AbpModuleHubWebModule : AbpModule
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)

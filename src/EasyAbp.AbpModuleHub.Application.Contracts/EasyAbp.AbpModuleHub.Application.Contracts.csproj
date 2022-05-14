@@ -12,6 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="EasyAbp.EShop.Orders.Application.Contracts" Version="$(EasyAbpEShopModuleVersion)" />
+    <PackageReference Include="EasyAbp.EShop.Payments.Application.Contracts" Version="$(EasyAbpEShopModuleVersion)" />
+    <PackageReference Include="EasyAbp.EShop.Products.Application.Contracts" Version="$(EasyAbpEShopModuleVersion)" />
+    <PackageReference Include="EasyAbp.EShop.Stores.Application.Contracts" Version="$(EasyAbpEShopModuleVersion)" />
     <PackageReference Include="Volo.Abp.ObjectExtending" Version="$(AbpVersion)" />
     <PackageReference Include="EasyAbp.EShop.Application.Contracts" Version="$(EasyAbpEShopModuleVersion)" />
     <PackageReference Include="Volo.Abp.Account.Application.Contracts" Version="$(AbpVersion)" />

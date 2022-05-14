@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using EasyAbp.AbpModuleHub.MultiTenancy;
 using EasyAbp.EShop;
@@ -14,6 +14,10 @@ using Volo.Abp.PermissionManagement.Identity;
 using Volo.Abp.PermissionManagement.IdentityServer;
 using Volo.Abp.SettingManagement;
 using Volo.Abp.TenantManagement;
+using EasyAbp.EShop.Orders;
+using EasyAbp.EShop.Payments;
+using EasyAbp.EShop.Products;
+using EasyAbp.EShop.Stores;
 
 namespace EasyAbp.AbpModuleHub
 {
@@ -31,6 +35,10 @@ namespace EasyAbp.AbpModuleHub
         typeof(AbpEmailingModule),
         typeof(EShopDomainModule)
     )]
+    [DependsOn(typeof(EShopOrdersDomainModule))]
+    [DependsOn(typeof(EShopPaymentsDomainModule))]
+    [DependsOn(typeof(EShopProductsDomainModule))]
+    [DependsOn(typeof(EShopStoresDomainModule))]
     public class AbpModuleHubDomainModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)

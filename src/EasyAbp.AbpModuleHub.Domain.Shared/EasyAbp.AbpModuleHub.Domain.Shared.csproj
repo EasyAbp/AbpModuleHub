@@ -10,6 +10,10 @@
 
   <ItemGroup>
     <PackageReference Include="EasyAbp.EShop.Domain.Shared" Version="$(EasyAbpEShopModuleVersion)" />
+    <PackageReference Include="EasyAbp.EShop.Orders.Domain.Shared" Version="$(EasyAbpEShopModuleVersion)" />
+    <PackageReference Include="EasyAbp.EShop.Payments.Domain.Shared" Version="$(EasyAbpEShopModuleVersion)" />
+    <PackageReference Include="EasyAbp.EShop.Products.Domain.Shared" Version="$(EasyAbpEShopModuleVersion)" />
+    <PackageReference Include="EasyAbp.EShop.Stores.Domain.Shared" Version="$(EasyAbpEShopModuleVersion)" />
     <PackageReference Include="Volo.Abp.Identity.Domain.Shared" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.IdentityServer.Domain.Shared" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.BackgroundJobs.Domain.Shared" Version="$(AbpVersion)" />
