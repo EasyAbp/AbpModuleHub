@@ -24,7 +24,7 @@ public class HomePageAppServiceTests : AbpModuleHubApplicationTestBase
     [Fact]
     public async Task Should_Return_Two_Modules()
     {
-        var result = await _homePageAppService.SearchModuleByNameAsync(new SearchModuleByNameRequestDto
+        var result = await _homePageAppService.SearchModuleByNameAsync(new SearchHubModuleByNameRequestDto
         {
             SearchKey = "Free Module",
             MaxResultCount = 10,

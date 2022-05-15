@@ -7,6 +7,6 @@ namespace EasyAbp.AbpModuleHub.HomePage
 {
     public interface IHomePageAppService : IApplicationService
     {
-        Task<PagedResultDto<SearchModuleResultDto>> SearchModuleByNameAsync(SearchModuleByNameRequestDto input);
+        Task<PagedResultDto<SearchHubModuleResultDto>> SearchModuleByNameAsync(SearchHubModuleByNameRequestDto input);
     }
 }

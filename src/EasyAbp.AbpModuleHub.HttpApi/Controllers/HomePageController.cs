@@ -16,7 +16,7 @@ namespace EasyAbp.AbpModuleHub.Controllers
         }
 
         [HttpGet]
-        public Task<PagedResultDto<SearchModuleResultDto>> SearchModuleByNameAsync(SearchModuleByNameRequestDto input)
+        public Task<PagedResultDto<SearchHubModuleResultDto>> SearchModuleByNameAsync(SearchHubModuleByNameRequestDto input)
         {
             return _homePageAppService.SearchModuleByNameAsync(input);
         }

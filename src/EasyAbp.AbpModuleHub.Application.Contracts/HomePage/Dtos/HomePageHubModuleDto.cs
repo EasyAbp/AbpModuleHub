@@ -1,6 +1,6 @@
 ﻿namespace EasyAbp.AbpModuleHub.HomePage.Dtos
 {
-    public class HomePageModuleDto
+    public class HomePageHubModuleDto
     {
         
     }

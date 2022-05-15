@@ -1,8 +1,8 @@
 using System;
 
-namespace EasyAbp.AbpModuleHub.ModuleManagement.Dtos
+namespace EasyAbp.AbpModuleHub.HubModules.Dtos
 {
-    public abstract class CreateOrUpdateModuleDto
+    public abstract class CreateOrUpdateHubModuleDto
     {
         public string Name { get; set; }
 

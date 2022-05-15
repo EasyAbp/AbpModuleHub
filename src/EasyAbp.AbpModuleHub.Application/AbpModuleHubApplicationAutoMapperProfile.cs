@@ -2,7 +2,7 @@
 using EasyAbp.AbpModuleHub.Authors;
 using EasyAbp.AbpModuleHub.HomePage.Dtos;
 using EasyAbp.AbpModuleHub.HubModules;
-using EasyAbp.AbpModuleHub.ModuleManagement.Dtos;
+using EasyAbp.AbpModuleHub.HubModules.Dtos;
 
 namespace EasyAbp.AbpModuleHub
 {
@@ -14,13 +14,13 @@ namespace EasyAbp.AbpModuleHub
              * Alternatively, you can split your mapping configurations
              * into multiple profile classes for a better organization. */
 
-            CreateMap<HubModule, SearchModuleResultDto>()
+            CreateMap<HubModule, SearchHubModuleResultDto>()
                 .ForMember(c => c.PublishedTime, o => o.MapFrom(c => c.CreationTime));
-            CreateMap<HubModule, ModuleDto>();
-            CreateMap<HubModule, ModuleInListDto>();
+            CreateMap<HubModule, HubModuleDto>();
+            CreateMap<HubModule, HubModuleInListDto>();
 
-            CreateMap<HubModuleType, ModuleTypeDto>();
-            CreateMap<ModuleTypeDto, HubModuleType>();
+            CreateMap<HubModuleType, HubModuleTypeDto>();
+            CreateMap<HubModuleTypeDto, HubModuleType>();
             
             CreateMap<Author, AuthorDto>();
         }

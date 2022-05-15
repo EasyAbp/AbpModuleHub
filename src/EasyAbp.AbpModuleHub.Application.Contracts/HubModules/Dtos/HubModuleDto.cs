@@ -2,9 +2,9 @@ using System;
 using EasyAbp.AbpModuleHub.Authors;
 using Volo.Abp.Application.Dtos;
 
-namespace EasyAbp.AbpModuleHub.ModuleManagement.Dtos
+namespace EasyAbp.AbpModuleHub.HubModules.Dtos
 {
-    public class ModuleDto : EntityDto<Guid>
+    public class HubModuleDto : EntityDto<Guid>
     {
         public string Name { get; set; }
 
@@ -20,7 +20,7 @@ namespace EasyAbp.AbpModuleHub.ModuleManagement.Dtos
         
         public Guid? ModuleTypeId { get; set; }
 
-        public ModuleTypeDto ModuleType { get; set; }
+        public HubModuleTypeDto HubModuleType { get; set; }
 
         public Guid AuthorId { get; set; }
 

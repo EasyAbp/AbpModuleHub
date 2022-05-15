@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using EasyAbp.AbpModuleHub.ModuleManagement;
-using EasyAbp.AbpModuleHub.ModuleManagement.Dtos;
+using EasyAbp.AbpModuleHub.HubModules;
+using EasyAbp.AbpModuleHub.HubModules.Dtos;
 using EasyAbp.EShop.Products.EntityFrameworkCore;
 using Shouldly;
 using Xunit;
@@ -11,18 +11,18 @@ namespace EasyAbp.AbpModuleHub
 {
     public class ModuleManagementAppServiceTests : AbpModuleHubApplicationTestBase
     {
-        private readonly IModuleManagementAppService _moduleManagementAppService;
+        private readonly IHubModuleManagementAppService _hubModuleManagementAppService;
 
         public ModuleManagementAppServiceTests()
         {
-            _moduleManagementAppService = GetRequiredService<IModuleManagementAppService>();
+            _hubModuleManagementAppService = GetRequiredService<IHubModuleManagementAppService>();
         }
 
         [Fact]
         public async Task Should_Deleted_Module()
         {
             // Insert new demo module.
-            var newModule = await _moduleManagementAppService.CreateModuleAsync(new CreateModuleDto
+            var newModule = await _hubModuleManagementAppService.CreateModuleAsync(new CreateHubModuleDto
             {
                 Name = "Demo Module",
                 CoverUrl = "https://www.image.com/cover.png",
@@ -32,7 +32,7 @@ namespace EasyAbp.AbpModuleHub
             });
 
             // Call delete method.
-            await _moduleManagementAppService.DeleteModuleAsync(newModule.Id);
+            await _hubModuleManagementAppService.DeleteModuleAsync(newModule.Id);
 
             // Check if module is deleted.
             UsingDbContext(db =>
@@ -47,7 +47,7 @@ namespace EasyAbp.AbpModuleHub
         [Fact]
         public async Task Should_Created_Module()
         {
-            await _moduleManagementAppService.CreateModuleAsync(new CreateModuleDto
+            await _hubModuleManagementAppService.CreateModuleAsync(new CreateHubModuleDto
             {
                 Name = "DataDictionary Module",
                 Description = "A DataDictionary Module.",
@@ -77,7 +77,7 @@ namespace EasyAbp.AbpModuleHub
         [Fact]
         public async Task Should_Return_Module_Info()
         {
-            var module = await _moduleManagementAppService.CreateModuleAsync(new CreateModuleDto
+            var module = await _hubModuleManagementAppService.CreateModuleAsync(new CreateHubModuleDto
             {
                 Name = "Details Module",
                 Description = "A Details Module.",
@@ -87,7 +87,7 @@ namespace EasyAbp.AbpModuleHub
                 Price = 50
             });
 
-            var moduleDto = await _moduleManagementAppService.GetModuleByIdAsync(module.Id);
+            var moduleDto = await _hubModuleManagementAppService.GetModuleByIdAsync(module.Id);
             module.ShouldNotBeNull();
             moduleDto.Id.ShouldBe(module.Id);
             moduleDto.Name.ShouldBe(module.Name);

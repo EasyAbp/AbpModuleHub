@@ -3,7 +3,7 @@ using Volo.Abp.Application.Dtos;
 
 namespace EasyAbp.AbpModuleHub.HomePage.Dtos
 {
-    public class SearchModuleResultDto : EntityDto<Guid>
+    public class SearchHubModuleResultDto : EntityDto<Guid>
     {
         public string Name { get; set; }
 

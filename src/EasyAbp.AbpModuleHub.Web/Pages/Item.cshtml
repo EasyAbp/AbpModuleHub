@@ -20,16 +20,16 @@
             <div class="row gx-4 gx-lg-5 align-items-center">
                 <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="/images/module-detail-default.jpg" alt="..." /></div>
                 <div class="col-md-6">
-                    <div class="mb-1"><i class="fa fa-user-circle" aria-hidden="true"></i> @Model.Module.Author.Name</div>
-                    <h1 class="display-5 fw-bolder">@Model.Module.Name</h1>
+                    <div class="mb-1"><i class="fa fa-user-circle" aria-hidden="true"></i> @Model.HubModule.Author.Name</div>
+                    <h1 class="display-5 fw-bolder">@Model.HubModule.Name</h1>
                     <div class="fs-5 mb-5">
-                        @if (Model.Module.OriginalPrice.HasValue)
+                        @if (Model.HubModule.OriginalPrice.HasValue)
                         {
-                            <span class="text-decoration-line-through">$@Model.Module.OriginalPrice</span>
+                            <span class="text-decoration-line-through">$@Model.HubModule.OriginalPrice</span>
                         }
-                        <span>$@Model.Module.Price</span>
+                        <span>$@Model.HubModule.Price</span>
                     </div>
-                    <p class="lead">@Model.Module.Description</p>
+                    <p class="lead">@Model.HubModule.Description</p>
                     <div class="d-flex">
                         <button class="btn btn-outline-dark flex-shrink-0" type="button">
                             <i class="bi-cart-fill me-1"></i>
@@ -59,7 +59,7 @@
                                     <p class="text-secondary"><small><i class="fa fa-user-circle" aria-hidden="true"></i> @module.Author.Name</small></p>
                                     <p class="text-secondary"><small>@module.Description</small></p>
                                     <!-- Product price-->
-                                    @if (Model.Module.OriginalPrice.HasValue)
+                                    @if (Model.HubModule.OriginalPrice.HasValue)
                                     {
                                         <span class="text-decoration-line-through">$@module.OriginalPrice</span>
                                     }

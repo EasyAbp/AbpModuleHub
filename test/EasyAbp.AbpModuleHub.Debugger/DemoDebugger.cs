@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Bogus;
-using EasyAbp.AbpModuleHub.ModuleManagement;
-using EasyAbp.AbpModuleHub.ModuleManagement.Dtos;
+using EasyAbp.AbpModuleHub.HubModules;
+using EasyAbp.AbpModuleHub.HubModules.Dtos;
 using Xunit;
 
 namespace EasyAbp.AbpModuleHub.Debugger
@@ -17,7 +17,7 @@ namespace EasyAbp.AbpModuleHub.Debugger
         {
             await WithUnitOfWorkAsync(async () =>
             {
-                var createModuleDto = new Faker<CreateModuleDto>()
+                var createModuleDto = new Faker<CreateHubModuleDto>()
                     .RuleFor(r => r.Name, r =>r.Commerce.ProductName())
                     .RuleFor(r => r.CoverUrl, r => r.Internet.Url())
                     .RuleFor(r => r.Price, r => r.System.Random.Decimal())
@@ -25,7 +25,7 @@ namespace EasyAbp.AbpModuleHub.Debugger
                     .RuleFor(r => r.Description, r => r.Commerce.ProductName())
                     .Generate();
 
-                var moduleManagement = GetRequiredService<IModuleManagementAppService>();
+                var moduleManagement = GetRequiredService<IHubModuleManagementAppService>();
                 await moduleManagement.CreateModuleAsync(createModuleDto);
             });
         }

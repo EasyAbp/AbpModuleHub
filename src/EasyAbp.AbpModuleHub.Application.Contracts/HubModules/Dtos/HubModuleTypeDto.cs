@@ -1,9 +1,9 @@
 using System;
 using Volo.Abp.Application.Dtos;
 
-namespace EasyAbp.AbpModuleHub.ModuleManagement.Dtos
+namespace EasyAbp.AbpModuleHub.HubModules.Dtos
 {
-    public class ModuleTypeDto : EntityDto<Guid>
+    public class HubModuleTypeDto : EntityDto<Guid>
     {
         public string Name { get; set; }
 

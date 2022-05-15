@@ -1,26 +1,26 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using EasyAbp.AbpModuleHub.ModuleManagement;
-using EasyAbp.AbpModuleHub.ModuleManagement.Dtos;
+using EasyAbp.AbpModuleHub.HubModules;
+using EasyAbp.AbpModuleHub.HubModules.Dtos;
 using Volo.Abp.Application.Dtos;
 
 namespace EasyAbp.AbpModuleHub.Web.Pages
 {
     public class IndexModel : AbpModuleHubPageModel
     {
-        public IReadOnlyList<ModuleInListDto> Modules { get; set; } = new List<ModuleInListDto>();
+        public IReadOnlyList<HubModuleInListDto> Modules { get; set; } = new List<HubModuleInListDto>();
 
-        private readonly IModuleManagementAppService _moduleManagementAppService;
+        private readonly IHubModuleManagementAppService _hubModuleManagementAppService;
 
         public IndexModel(
-            IModuleManagementAppService moduleManagementAppService)
+            IHubModuleManagementAppService hubModuleManagementAppService)
         {
-            _moduleManagementAppService = moduleManagementAppService;
+            _hubModuleManagementAppService = hubModuleManagementAppService;
         }
 
         public async Task OnGetAsync()
         {
-            Modules = (await _moduleManagementAppService.GetListAsync(new PagedResultRequestDto())).Items;
+            Modules = (await _hubModuleManagementAppService.GetListAsync(new PagedResultRequestDto())).Items;
         }
     }
 }

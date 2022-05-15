@@ -17,7 +17,7 @@ namespace EasyAbp.AbpModuleHub.HomePage
             _hubModuleRepository = hubModuleRepository;
         }
 
-        public async Task<PagedResultDto<SearchModuleResultDto>> SearchModuleByNameAsync(SearchModuleByNameRequestDto input)
+        public async Task<PagedResultDto<SearchHubModuleResultDto>> SearchModuleByNameAsync(SearchHubModuleByNameRequestDto input)
         {
             var queryable = await _hubModuleRepository.GetQueryableAsync();
 
@@ -28,8 +28,8 @@ namespace EasyAbp.AbpModuleHub.HomePage
             var totalCount = await AsyncExecuter.LongCountAsync(modules);
             var modulesList = await AsyncExecuter.ToListAsync(modules);
 
-            return new PagedResultDto<SearchModuleResultDto>(totalCount,
-                ObjectMapper.Map<List<HubModule>, List<SearchModuleResultDto>>(modulesList));
+            return new PagedResultDto<SearchHubModuleResultDto>(totalCount,
+                ObjectMapper.Map<List<HubModule>, List<SearchHubModuleResultDto>>(modulesList));
         }
     }
 }

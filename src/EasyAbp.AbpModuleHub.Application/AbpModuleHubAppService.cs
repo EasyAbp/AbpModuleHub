@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using EasyAbp.AbpModuleHub.Localization;
+﻿using EasyAbp.AbpModuleHub.Localization;
 using Volo.Abp.Application.Services;
 
 namespace EasyAbp.AbpModuleHub
