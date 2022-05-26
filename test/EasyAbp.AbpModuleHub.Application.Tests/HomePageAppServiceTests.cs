@@ -46,7 +46,7 @@ public class HomePageAppServiceTests : AbpModuleHubApplicationTestBase
             // Todo: where is the Author repo?
             var authorId = guidGenerator.Create();
             
-            await domainService.CreateModuleAsync(new CreateModuleInfo(
+            await domainService.CreateModuleAsync(new CreateHubModuleInfo(
                 "Free Module - A",
                 "Free Module - A Description",
                 "30",
@@ -55,7 +55,7 @@ public class HomePageAppServiceTests : AbpModuleHubApplicationTestBase
                 null,
                 authorId));
 
-            await domainService.CreateModuleAsync(new CreateModuleInfo(
+            await domainService.CreateModuleAsync(new CreateHubModuleInfo(
                 "Free Module - B",
                 "Free Module - B Description",
                 "20",

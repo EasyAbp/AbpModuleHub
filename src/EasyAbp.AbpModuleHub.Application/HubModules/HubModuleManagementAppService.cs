@@ -25,7 +25,7 @@ namespace EasyAbp.AbpModuleHub.HubModules
         [Authorize(AbpModuleHubPermissions.HubModuleManagement.Create)]
         public async Task<HubModuleDto> CreateModuleAsync(CreateHubModuleDto input)
         {
-            var newModule = await _hubModuleManager.CreateModuleAsync(new CreateModuleInfo(
+            var newModule = await _hubModuleManager.CreateModuleAsync(new CreateHubModuleInfo(
                 input.Name,
                 input.Description,
                 input.PayMethod,

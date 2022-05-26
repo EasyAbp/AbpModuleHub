@@ -42,7 +42,9 @@ namespace EasyAbp.AbpModuleHub.HubModules
             _productDetailRepository = productDetailRepository;
         }
 
-        public async Task<HubModule> CreateModuleAsync(CreateModuleInfo info)
+        #region > Create Hub Module <
+
+        public async Task<HubModule> CreateModuleAsync(CreateHubModuleInfo info)
         {
             var storeId = await EnsureStoreExistAsync();
             var categoryId = await EnsureProductCategoryExistAsync();
@@ -68,23 +70,30 @@ namespace EasyAbp.AbpModuleHub.HubModules
                 null,
                 0
             );
-            
+
             var attribute = new ProductAttribute(GuidGenerator.Create(), "标准", null);
-            
             var attributeOption = new ProductAttributeOption(GuidGenerator.Create(), "标准", null);
 
             attribute.ProductAttributeOptions.Add(attributeOption);
-            
+
             product.ProductAttributes.Add(attribute);
 
             product.ProductSkus.Add(new ProductSku(GuidGenerator.Create(),
                 await _attributeOptionIdsSerializer.SerializeAsync(new[] { attributeOption.Id }), "Annual",
                 AbpModuleHubConsts.Currency, null, 0, 1, 10, null, null, null));
-            
+
             await _productManager.CreateAsync(product, new[] { categoryId });
 
-            return await _hubModuleRepository.InsertAsync(new HubModule(GuidGenerator.Create(), CurrentTenant.Id, info.Name,
-                info.Description, info.PayMethod, info.Price, productId, info.ModuleTypeId, info.AuthorId), true);
+            return await _hubModuleRepository.InsertAsync(new HubModule(GuidGenerator.Create(),
+                    CurrentTenant.Id,
+                    info.Name,
+                    info.Description,
+                    info.PayMethod,
+                    info.Price,
+                    productId,
+                    info.ModuleTypeId,
+                    info.AuthorId),
+                true);
         }
 
         private async Task<Guid> EnsureStoreExistAsync()
@@ -119,6 +128,8 @@ namespace EasyAbp.AbpModuleHub.HubModules
 
             return category.Id;
         }
+
+        #endregion
 
         public async Task DeleteModuleAsync(HubModule hubModule)
         {

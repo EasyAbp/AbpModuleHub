@@ -2,7 +2,7 @@
 
 namespace EasyAbp.AbpModuleHub.HubModules;
 
-public class CreateModuleInfo
+public class CreateHubModuleInfo
 {
     public string Name { get; set; }
 
@@ -15,11 +15,16 @@ public class CreateModuleInfo
     public decimal Price { get; set; }
 
     public Guid? ModuleTypeId { get; set; }
-        
+
     public Guid AuthorId { get; set; }
 
-    public CreateModuleInfo(string name, string description, string payMethod, decimal price, Guid? moduleTypeId,
-        string coverUrl, Guid authorId)
+    public CreateHubModuleInfo(string name,
+        string description,
+        string payMethod,
+        decimal price,
+        Guid? moduleTypeId,
+        string coverUrl,
+        Guid authorId)
     {
         Name = name;
         Description = description;
