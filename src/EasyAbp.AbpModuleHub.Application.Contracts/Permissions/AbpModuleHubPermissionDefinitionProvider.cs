@@ -9,8 +9,17 @@ namespace EasyAbp.AbpModuleHub.Permissions
         public override void Define(IPermissionDefinitionContext context)
         {
             var myGroup = context.AddGroup(AbpModuleHubPermissions.GroupName);
-            //Define your own permissions here. Example:
-            //myGroup.AddPermission(AbpModuleHubPermissions.MyPermission1, L("Permission:MyPermission1"));
+            myGroup.AddPermission(AbpModuleHubPermissions.HubModuleManagement.Management);
+            myGroup.AddPermission(AbpModuleHubPermissions.HubModuleManagement.Default, L("Permission:HubModule"));
+            myGroup.AddPermission(AbpModuleHubPermissions.HubModuleManagement.Create, L("Permission:Create"));
+            myGroup.AddPermission(AbpModuleHubPermissions.HubModuleManagement.Update, L("Permission:Update"));
+            myGroup.AddPermission(AbpModuleHubPermissions.HubModuleManagement.Delete, L("Permission:Delete"));
+
+            myGroup.AddPermission(AbpModuleHubPermissions.HubModuleTypeManagement.Management);
+            myGroup.AddPermission(AbpModuleHubPermissions.HubModuleTypeManagement.Default, L("Permission:HubModuleType"));
+            myGroup.AddPermission(AbpModuleHubPermissions.HubModuleTypeManagement.Create, L("Permission:Create"));
+            myGroup.AddPermission(AbpModuleHubPermissions.HubModuleTypeManagement.Update, L("Permission:Update"));
+            myGroup.AddPermission(AbpModuleHubPermissions.HubModuleTypeManagement.Delete, L("Permission:Delete"));
         }
 
         private static LocalizableString L(string name)
