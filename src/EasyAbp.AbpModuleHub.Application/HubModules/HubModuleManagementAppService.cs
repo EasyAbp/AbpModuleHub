@@ -9,7 +9,7 @@ using Volo.Abp.Application.Services;
 
 namespace EasyAbp.AbpModuleHub.HubModules
 {
-    [Authorize(AbpModuleHubPermissions.HubModuleManagement.Management)]
+    // [Authorize(AbpModuleHubPermissions.HubModuleManagement.Management)]
     public class HubModuleManagementAppService : ApplicationService, IHubModuleManagementAppService
     {
         private readonly HubModuleManager _hubModuleManager;

@@ -71,8 +71,8 @@ namespace EasyAbp.AbpModuleHub.HubModules
                 0
             );
 
-            var attribute = new ProductAttribute(GuidGenerator.Create(), "标准", null);
-            var attributeOption = new ProductAttributeOption(GuidGenerator.Create(), "标准", null);
+            var attribute = new ProductAttribute(GuidGenerator.Create(), "Standard", null);
+            var attributeOption = new ProductAttributeOption(GuidGenerator.Create(), "Standard", null);
 
             attribute.ProductAttributeOptions.Add(attributeOption);
 

@@ -41,6 +41,11 @@ namespace EasyAbp.AbpModuleHub
     [DependsOn(typeof(EShopStoresDomainModule))]
     public class AbpModuleHubDomainModule : AbpModule
     {
+        public override void PreConfigureServices(ServiceConfigurationContext context)
+        {
+            AbpModuleHubDomainObjectExtensions.Configure();
+        }
+
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
             Configure<AbpMultiTenancyOptions>(options => { options.IsEnabled = MultiTenancyConsts.IsEnabled; });

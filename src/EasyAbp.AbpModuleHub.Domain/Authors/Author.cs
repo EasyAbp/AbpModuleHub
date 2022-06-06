@@ -10,5 +10,7 @@ namespace EasyAbp.AbpModuleHub.Authors
         public string Email { get; set; }
 
         public string Avatar { get; set; }
+
+        public Guid? StoreId { get; set; }
     }
 }

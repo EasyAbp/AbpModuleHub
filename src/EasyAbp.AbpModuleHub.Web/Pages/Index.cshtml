@@ -1,17 +1,22 @@
 ﻿@page
+@using EasyAbp.AbpModuleHub
 @using Microsoft.AspNetCore.Mvc.Localization
 @using EasyAbp.AbpModuleHub.Localization
+@using Volo.Abp.Data
 @using Volo.Abp.Users
 @model EasyAbp.AbpModuleHub.Web.Pages.IndexModel
 @inject IHtmlLocalizer<AbpModuleHubResource> L
 @inject ICurrentUser CurrentUser
+
 @section styles {
-    <abp-style src="/Pages/Index.css" />
+    <abp-style src="/Pages/Index.css"/>
 }
+
 @section scripts {
-    <abp-script src="/Pages/Index.js" />
+    <abp-script src="/Pages/Index.js"/>
 }
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet" />
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet"/>
 
 <div class="container">
     <!-- Header-->
@@ -37,16 +42,24 @@
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
-                                    <h5 class="fw-bolder">@module.Name</h5>
-                                    <p class="text-secondary"><small><i class="fa fa-user-circle" aria-hidden="true"></i> @module.Author.Name</small></p>
-                                    <p class="text-secondary"><small>@module.Description</small></p>
+                                    <h5 class="fw-bolder">@module.DisplayName</h5>
+                                    <p class="text-secondary">
+                                        <small>
+                                            <i class="fa fa-user-circle" aria-hidden="true"></i> @module.GetProperty(AbpModuleHubConsts.ProductAuthorNameExtraPropertyName)
+                                        </small>
+                                    </p>
+                                    <p class="text-secondary">
+                                        <small>@module.GetProperty(AbpModuleHubConsts.ProductDescriptionExtraPropertyName)</small>
+                                    </p>
                                     <!-- Product price-->
                                     $69.00
                                 </div>
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" asp-page="/Item" asp-all-route-data="@(new Dictionary<string, string> { { "id", module.Id.ToString() } })">@L["Install"]</a></div>
+                                <div class="text-center">
+                                    <a class="btn btn-outline-dark mt-auto" asp-page="/Item" asp-all-route-data="@(new Dictionary<string, string> { { "id", module.Id.ToString() } })">@L["Install"]</a>
+                                </div>
                             </div>
                         </div>
                     </div>

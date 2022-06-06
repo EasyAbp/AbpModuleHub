@@ -9,7 +9,7 @@ namespace EasyAbp.AbpModuleHub.Permissions
         public override void Define(IPermissionDefinitionContext context)
         {
             var myGroup = context.AddGroup(AbpModuleHubPermissions.GroupName);
-            myGroup.AddPermission(AbpModuleHubPermissions.HubModuleManagement.Management);
+            myGroup.AddPermission(AbpModuleHubPermissions.HubModuleManagement.Manage);
             myGroup.AddPermission(AbpModuleHubPermissions.HubModuleManagement.Default, L("Permission:HubModule"));
             myGroup.AddPermission(AbpModuleHubPermissions.HubModuleManagement.Create, L("Permission:Create"));
             myGroup.AddPermission(AbpModuleHubPermissions.HubModuleManagement.Update, L("Permission:Update"));
