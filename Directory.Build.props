@@ -2,7 +2,7 @@
   <PropertyGroup>
 
     <AbpVersion>5.1.3</AbpVersion>
-    <EasyAbpEShopModuleVersion>2.9.1</EasyAbpEShopModuleVersion>
+    <EasyAbpEShopModuleVersion>2.9.2</EasyAbpEShopModuleVersion>
 
   </PropertyGroup>
 </Project>
