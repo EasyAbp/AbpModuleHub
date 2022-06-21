@@ -64,6 +64,7 @@ namespace EasyAbp.AbpModuleHub.EntityFrameworkCore
         // Hub Entities
         public DbSet<HubModule> ModuleProducts { get; set; }
         public DbSet<HubModuleType> ModuleTypes { get; set; }
+        public DbSet<AuthorStoreMapping> AuthorStoreMappings { get; set; }
 
         public AbpModuleHubDbContext(DbContextOptions<AbpModuleHubDbContext> options)
             : base(options)
@@ -119,8 +120,18 @@ namespace EasyAbp.AbpModuleHub.EntityFrameworkCore
 
                 b.Property(e => e.Name).HasMaxLength(64).IsRequired();
                 b.Property(e => e.Email).HasMaxLength(64).IsRequired();
-                b.Property(e => e.Avatar).HasMaxLength(256).IsRequired();
+                b.Property(e => e.Avatar).HasMaxLength(256);
             });
+
+            builder.Entity<AuthorStoreMapping>(b =>
+            {
+                b.ToTable(AbpModuleHubConsts.DbTablePrefix + "UserStoreMappings", AbpModuleHubConsts.DbSchema);
+                b.ConfigureByConvention();
+
+                b.HasKey(x => new { x.StoreId, x.AuthorId });
+                b.HasIndex(x => new { x.StoreId, x.AuthorId });
+            });
+
             builder.ConfigureEShopOrders();
             builder.ConfigureEShopPayments();
             builder.ConfigureEShopProducts();
