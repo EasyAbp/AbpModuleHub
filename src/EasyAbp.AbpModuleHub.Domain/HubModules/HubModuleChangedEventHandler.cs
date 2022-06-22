@@ -14,6 +14,7 @@ using Volo.Abp.Users;
 
 namespace EasyAbp.AbpModuleHub.HubModules;
 
+// TODO: [Need discussion]I don't think this is a good way to do it, it splits up the logic.
 public class HubModuleChangedEventHandler : ILocalEventHandler<EntityCreatedEventData<HubModule>>,
     ILocalEventHandler<EntityDeletedEventData<HubModule>>,
     ILocalEventHandler<EntityUpdatedEventData<HubModule>>,
@@ -23,6 +24,7 @@ public class HubModuleChangedEventHandler : ILocalEventHandler<EntityCreatedEven
     private readonly IGuidGenerator _guidGenerator;
     private readonly ICurrentTenant _currentTenant;
     private readonly ICurrentUser _currentUser;
+    private readonly IAttributeOptionIdsSerializer _attributeOptionIdsSerializer;
 
     private readonly IAuthorStoreMappingRepository _authorStoreMappingRepository;
     private readonly IStoreRepository _storeRepository;
@@ -34,7 +36,8 @@ public class HubModuleChangedEventHandler : ILocalEventHandler<EntityCreatedEven
         IGuidGenerator guidGenerator,
         IStoreRepository storeRepository,
         ICurrentUser currentUser,
-        IProductDetailRepository productDetailRepository)
+        IProductDetailRepository productDetailRepository,
+        IAttributeOptionIdsSerializer attributeOptionIdsSerializer)
     {
         _productManager = productManager;
         _currentTenant = currentTenant;
@@ -43,6 +46,7 @@ public class HubModuleChangedEventHandler : ILocalEventHandler<EntityCreatedEven
         _storeRepository = storeRepository;
         _currentUser = currentUser;
         _productDetailRepository = productDetailRepository;
+        _attributeOptionIdsSerializer = attributeOptionIdsSerializer;
     }
 
     public async Task HandleEventAsync(EntityCreatedEventData<HubModule> eventData)
@@ -51,10 +55,9 @@ public class HubModuleChangedEventHandler : ILocalEventHandler<EntityCreatedEven
         await CreateProduct(eventData.Entity, storeId);
     }
 
-    public Task HandleEventAsync(EntityDeletedEventData<HubModule> eventData)
+    public async Task HandleEventAsync(EntityDeletedEventData<HubModule> eventData)
     {
-        // TODO: Not implemented yet.
-        return Task.CompletedTask;
+        await _productManager.DeleteAsync(eventData.Entity.ProductId);
     }
 
     public Task HandleEventAsync(EntityUpdatedEventData<HubModule> eventData)
@@ -66,19 +69,6 @@ public class HubModuleChangedEventHandler : ILocalEventHandler<EntityCreatedEven
     private async Task CreateProduct(HubModule module, Guid storeId)
     {
         var detailsId = await EnsureCreateProductDetails(module, storeId);
-        
-        // var attribute = new ProductAttribute(GuidGenerator.Create(), "Standard", null);
-        // var attributeOption = new ProductAttributeOption(GuidGenerator.Create(), "Standard", null);
-        //
-        // attribute.ProductAttributeOptions.Add(attributeOption);
-        //
-        // product.ProductAttributes.Add(attribute);
-        //
-        // product.ProductSkus.Add(new ProductSku(GuidGenerator.Create(),
-        //     await _attributeOptionIdsSerializer.SerializeAsync(new[] { attributeOption.Id }), "Annual",
-        //     AbpModuleHubConsts.Currency, null, 0, 1, 10, null, null, null));
-        //
-        // await _productManager.CreateAsync(product, new[] { categoryId });
 
         var product = new Product(module.ProductId,
             _currentTenant.Id,
@@ -96,6 +86,7 @@ public class HubModuleChangedEventHandler : ILocalEventHandler<EntityCreatedEven
             0
         );
 
+        await HandleProductSku(product);
         await _productManager.CreateAsync(product);
     }
 
@@ -115,7 +106,6 @@ public class HubModuleChangedEventHandler : ILocalEventHandler<EntityCreatedEven
         return productDetailId;
     }
 
-
     private async Task<Guid> EnsureStoreCreateAsync()
     {
         var mapping = await _authorStoreMappingRepository.FirstOrDefaultAsync(x => x.AuthorId == _currentUser.Id);
@@ -132,5 +122,19 @@ public class HubModuleChangedEventHandler : ILocalEventHandler<EntityCreatedEven
         await _authorStoreMappingRepository.InsertAsync(new AuthorStoreMapping(_currentUser.GetId(), newStoreId));
 
         return newStoreId;
+    }
+
+    private async Task HandleProductSku(Product product)
+    {
+        var attribute = new ProductAttribute(_guidGenerator.Create(), "Standard", null);
+        var attributeOption = new ProductAttributeOption(_guidGenerator.Create(), "Standard", null);
+
+        attribute.ProductAttributeOptions.Add(attributeOption);
+
+        product.ProductAttributes.Add(attribute);
+
+        product.ProductSkus.Add(new ProductSku(_guidGenerator.Create(),
+            await _attributeOptionIdsSerializer.SerializeAsync(new[] { attributeOption.Id }),
+            "Annual", AbpModuleHubConsts.Currency, null, 0, 1, 10, null, null, null));
     }
 }

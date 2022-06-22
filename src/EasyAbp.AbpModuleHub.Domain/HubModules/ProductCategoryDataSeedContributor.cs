@@ -2,6 +2,7 @@
 using EasyAbp.EShop.Products.Categories;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
+using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Guids;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.Uow;
@@ -32,13 +33,18 @@ public class ProductCategoryDataSeedContributor : IDataSeedContributor, ITransie
         using (_currentTenant.Change(context?.TenantId))
         {
             // TODO: Maybe the DisplayName should be used as a multi-language resource.
+            if (await _categoryRepository.FirstOrDefaultAsync(x => x.DisplayName == ProductCategoryConsts.Sdk) != null)
+            {
+                return;
+            }
+
             var category = await _categoryManager.CreateAsync(null,
                 _guidGenerator.Create().ToString(),
                 ProductCategoryConsts.Sdk,
                 null,
                 null,
                 false);
-            
+
             await _categoryRepository.InsertAsync(category);
         }
     }
