@@ -1,4 +1,4 @@
-﻿namespace EasyAbp.AbpModuleHub;
+﻿namespace EasyAbp.AbpModuleHub.HubModules;
 
 public class ProductCategoryConsts
 {

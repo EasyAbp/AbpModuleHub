@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using EasyAbp.AbpModuleHub.Authors;
-using EasyAbp.AbpModuleHub.HubModules;
 using EasyAbp.EShop.Products.ProductDetails;
 using EasyAbp.EShop.Products.Products;
 using EasyAbp.EShop.Stores.Stores;
@@ -13,9 +12,9 @@ using Volo.Abp.Guids;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.Users;
 
-namespace EasyAbp.AbpModuleHub.EventHandles;
+namespace EasyAbp.AbpModuleHub.HubModules;
 
-public class ModuleChangedEventHandler : ILocalEventHandler<EntityCreatedEventData<HubModule>>,
+public class HubModuleChangedEventHandler : ILocalEventHandler<EntityCreatedEventData<HubModule>>,
     ILocalEventHandler<EntityDeletedEventData<HubModule>>,
     ILocalEventHandler<EntityUpdatedEventData<HubModule>>,
     ITransientDependency
@@ -29,7 +28,7 @@ public class ModuleChangedEventHandler : ILocalEventHandler<EntityCreatedEventDa
     private readonly IStoreRepository _storeRepository;
     private readonly IProductDetailRepository _productDetailRepository;
 
-    public ModuleChangedEventHandler(IProductManager productManager,
+    public HubModuleChangedEventHandler(IProductManager productManager,
         ICurrentTenant currentTenant,
         IAuthorStoreMappingRepository authorStoreMappingRepository,
         IGuidGenerator guidGenerator,

@@ -19,16 +19,17 @@ namespace EasyAbp.AbpModuleHub.HubModules
         public virtual string PayMethod { get; protected set; }
 
         public virtual decimal? OriginalPrice { get; protected set; }
-        
+
         public virtual decimal Price { get; protected set; }
+
+        public HubModuleStatus Status { get; protected set; }
 
         public virtual Guid ProductId { get; protected set; }
 
         public virtual Guid? ModuleTypeId { get; set; }
-        
-        [CanBeNull]
-        public virtual HubModuleType HubModuleType { get; set; }
-        
+
+        [CanBeNull] public virtual HubModuleType HubModuleType { get; set; }
+
         public virtual Guid AuthorId { get; protected set; }
 
         public virtual Author Author { get; protected set; }
@@ -57,6 +58,7 @@ namespace EasyAbp.AbpModuleHub.HubModules
             ProductId = productId;
             ModuleTypeId = moduleTypeId;
             AuthorId = authorId;
+            Status = HubModuleStatus.Rejected;
         }
 
         public void UpdateBaseInfo(
@@ -76,6 +78,18 @@ namespace EasyAbp.AbpModuleHub.HubModules
         {
             OriginalPrice = originalPrice;
             Price = price;
+        }
+
+        public void Approve()
+        {
+            Status = HubModuleStatus.Approved;
+            AddLocalEvent(new HubModuleApprovedEvent(Id, ProductId));
+        }
+
+        public void Reject()
+        {
+            Status = HubModuleStatus.Rejected;
+            AddLocalEvent(new HubModuleRejectedEvent(Id, ProductId));
         }
     }
 }

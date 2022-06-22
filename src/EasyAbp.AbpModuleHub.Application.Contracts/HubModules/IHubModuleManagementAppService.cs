@@ -17,5 +17,9 @@ namespace EasyAbp.AbpModuleHub.HubModules
         Task<HubModuleDto> GetModuleByIdAsync(Guid id);
 
         Task<PagedResultDto<HubModuleInListDto>> GetListAsync(PagedResultRequestDto input);
+
+        Task ApproveHubModuleAsync(Guid? moduleId);
+        
+        Task RejectHubModuleAsync(Guid? moduleId);
     }
 }

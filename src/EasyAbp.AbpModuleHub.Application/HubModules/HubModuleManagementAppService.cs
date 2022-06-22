@@ -73,5 +73,29 @@ namespace EasyAbp.AbpModuleHub.HubModules
             return new PagedResultDto<HubModuleInListDto>(totalCount,
                 ObjectMapper.Map<List<HubModule>, List<HubModuleInListDto>>(modules));
         }
+
+        public async Task ApproveHubModuleAsync(Guid? moduleId)
+        {
+            if (moduleId == null)
+            {
+                return;
+            }
+
+            var module = await _hubModuleRepository.GetAsync(moduleId.Value);
+            module.Approve();
+            await _hubModuleRepository.UpdateAsync(module);
+        }
+
+        public async Task RejectHubModuleAsync(Guid? moduleId)
+        {
+            if (moduleId == null)
+            {
+                return;
+            }
+
+            var module = await _hubModuleRepository.GetAsync(moduleId.Value);
+            module.Reject();
+            await _hubModuleRepository.UpdateAsync(module);
+        }
     }
 }

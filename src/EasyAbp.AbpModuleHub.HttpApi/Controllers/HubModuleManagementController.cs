@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using EasyAbp.AbpModuleHub.HubModules;
 using EasyAbp.AbpModuleHub.HubModules.Dtos;
+using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.Application.Dtos;
 
 namespace EasyAbp.AbpModuleHub.Controllers
@@ -24,5 +25,11 @@ namespace EasyAbp.AbpModuleHub.Controllers
         public Task<HubModuleDto> GetModuleByIdAsync(Guid id) => _hubModuleManagementAppService.GetModuleByIdAsync(id);
 
         public Task<PagedResultDto<HubModuleInListDto>> GetListAsync(PagedResultRequestDto input) => _hubModuleManagementAppService.GetListAsync(input);
+
+        [HttpPut("/api/app/hub-module-management/approve-hub-module/{moduleId}")]
+        public Task ApproveHubModuleAsync(Guid? moduleId) => _hubModuleManagementAppService.ApproveHubModuleAsync(moduleId);
+
+        [HttpPut("/api/app/hub-module-management/reject-hub-module/{moduleId}")]
+        public Task RejectHubModuleAsync(Guid? moduleId) => _hubModuleManagementAppService.RejectHubModuleAsync(moduleId);
     }
 }

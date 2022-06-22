@@ -102,6 +102,7 @@ namespace EasyAbp.AbpModuleHub.EntityFrameworkCore
                 b.Property(e => e.Price).HasColumnType("decimal(20,8)");
                 b.Property(e => e.ProductId).IsRequired();
                 b.Property(e => e.AuthorId).IsRequired();
+                b.Property(e => e.Status).IsRequired().HasConversion<int>();
             });
 
             builder.Entity<HubModuleType>(b =>
